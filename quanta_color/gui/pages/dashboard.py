@@ -5,11 +5,17 @@ Overview page with quick stats, navigation shortcuts,
 and library information.
 """
 
-from PyQt6.QtWidgets import (
-    QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
-    QScrollArea, QSizePolicy, QGridLayout,
-)
 from PyQt6.QtCore import Qt, pyqtSignal
+from PyQt6.QtWidgets import (
+    QGridLayout,
+    QHBoxLayout,
+    QLabel,
+    QPushButton,
+    QScrollArea,
+    QSizePolicy,
+    QVBoxLayout,
+    QWidget,
+)
 
 from quanta_color.gui.app import C, Card, Heading, Stat
 

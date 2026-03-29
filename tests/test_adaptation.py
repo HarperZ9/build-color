@@ -2,13 +2,19 @@
 import numpy as np
 import pytest
 from quanta_color.adaptation import (
-    get_adaptation_matrix, adapt, adapt_partial,
-    ILLUMINANTS, MATRICES,
-    estimate_white_gray_world, estimate_white_white_patch,
-    estimate_white_percentile, estimate_white_shades_of_gray,
-    xy_to_cct_mccamy, cct_to_xy, cct_to_xyz,
+    ILLUMINANTS,
+    MATRICES,
+    adapt,
+    adapt_partial,
+    cct_to_xy,
+    cct_to_xyz,
+    estimate_white_gray_world,
+    estimate_white_percentile,
+    estimate_white_shades_of_gray,
+    estimate_white_white_patch,
+    get_adaptation_matrix,
+    xy_to_cct_mccamy,
 )
-
 
 ALL_METHODS = list(MATRICES.keys())
 

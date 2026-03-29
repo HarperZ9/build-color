@@ -2,13 +2,25 @@
 import numpy as np
 import pytest
 from quanta_color.tonemap import (
-    reinhard, reinhard_extended, aces_filmic, aces_hill,
-    hable, lottes, uchimura, agx, pbr_neutral, knee,
-    pq_eotf, pq_oetf, hlg_oetf, hlg_eotf,
-    bt2390_eetf, bt2446_method_a,
-    list_operators, get_operator, OPERATORS,
+    OPERATORS,
+    aces_filmic,
+    aces_hill,
+    agx,
+    bt2390_eetf,
+    bt2446_method_a,
+    get_operator,
+    hable,
+    hlg_eotf,
+    hlg_oetf,
+    knee,
+    list_operators,
+    lottes,
+    pq_eotf,
+    pq_oetf,
+    reinhard,
+    reinhard_extended,
+    uchimura,
 )
-
 
 # All simple tone mapping operators (input -> [0,1])
 SIMPLE_OPERATORS = [

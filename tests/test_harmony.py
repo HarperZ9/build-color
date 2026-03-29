@@ -2,11 +2,15 @@
 import numpy as np
 import pytest
 from quanta_color.harmony import (
-    complementary, split_complementary, triadic,
-    tetradic, analogous, monochromatic,
-    generate, SCHEMES,
+    SCHEMES,
+    analogous,
+    complementary,
+    generate,
+    monochromatic,
+    split_complementary,
+    tetradic,
+    triadic,
 )
-
 
 BASE_RED = np.array([0.8, 0.2, 0.1])
 BASE_BLUE = np.array([0.1, 0.3, 0.9])

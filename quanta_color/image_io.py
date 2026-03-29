@@ -11,9 +11,9 @@ Functions:
     get_image_info      - Get width, height, mode, format without loading pixels
 """
 
-import numpy as np
 from pathlib import Path
-from typing import Union
+
+import numpy as np
 
 try:
     from PIL import Image as PILImage
@@ -32,7 +32,7 @@ def _require_pillow() -> None:
         )
 
 
-def load_image(path: Union[str, Path]) -> np.ndarray:
+def load_image(path: str | Path) -> np.ndarray:
     """
     Load an image file and return a float64 (H, W, 3) array in 0-1 sRGB.
 
@@ -93,7 +93,7 @@ def load_image(path: Union[str, Path]) -> np.ndarray:
 
 def save_image(
     image: np.ndarray,
-    path: Union[str, Path],
+    path: str | Path,
     bit_depth: int = 8,
 ) -> None:
     """
@@ -187,7 +187,7 @@ def resize_for_preview(
     return np.asarray(img, dtype=np.float64) / 255.0
 
 
-def get_image_info(path: Union[str, Path]) -> dict:
+def get_image_info(path: str | Path) -> dict:
     """
     Get basic image metadata without loading full pixel data.
 

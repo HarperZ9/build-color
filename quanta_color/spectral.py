@@ -9,9 +9,8 @@ Physical spectral calculations for color science:
 - Cauchy dispersion model
 """
 
-import numpy as np
-from typing import Tuple
 
+import numpy as np
 
 # =============================================================================
 # Physical Constants
@@ -115,7 +114,7 @@ def planck_radiation(wavelength_nm: np.ndarray, temperature_K: float) -> np.ndar
     return C1 / (lam**5 * (np.exp(C2 / (lam * T)) - 1.0)) * 1e-9
 
 
-def blackbody_chromaticity(temperature_K: float) -> Tuple[float, float]:
+def blackbody_chromaticity(temperature_K: float) -> tuple[float, float]:
     """Compute CIE xy chromaticity of a blackbody at given temperature."""
     spd = planck_radiation(CMF_WAVELENGTHS, temperature_K)
     xyz = spd_to_xyz(CMF_WAVELENGTHS, spd)
@@ -127,7 +126,7 @@ def blackbody_chromaticity(temperature_K: float) -> Tuple[float, float]:
 # CIE Daylight
 # =============================================================================
 
-def daylight_chromaticity(cct: float) -> Tuple[float, float]:
+def daylight_chromaticity(cct: float) -> tuple[float, float]:
     """CIE daylight chromaticity from correlated color temperature."""
     T = cct
     if T < 4000 or T > 25000:

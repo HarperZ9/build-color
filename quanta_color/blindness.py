@@ -15,9 +15,8 @@ Usage:
     simulated = simulate(srgb_image, "deuteranopia", severity=1.0)
 """
 
-import numpy as np
-from typing import Optional
 
+import numpy as np
 
 # Brettel et al. (1997) simulation matrices
 # Applied to linear sRGB values

@@ -23,11 +23,12 @@ Functions:
     lut_from_function - Bake a color transform function into a LUT
 """
 
-import numpy as np
-from dataclasses import dataclass, field
-from pathlib import Path
-from typing import Callable, Union
 import xml.etree.ElementTree as ET
+from collections.abc import Callable
+from dataclasses import dataclass
+from pathlib import Path
+
+import numpy as np
 
 
 @dataclass
@@ -68,7 +69,7 @@ class LUT1D:
 # .cube I/O
 # =============================================================================
 
-def read_cube(path: Union[str, Path]) -> Union[LUT3D, LUT1D]:
+def read_cube(path: str | Path) -> LUT3D | LUT1D:
     """
     Parse a .cube LUT file.
 
@@ -89,7 +90,7 @@ def read_cube(path: Union[str, Path]) -> Union[LUT3D, LUT1D]:
     domain_max = np.array([1.0, 1.0, 1.0])
     data_lines: list[np.ndarray] = []
 
-    with open(path, "r") as f:
+    with open(path) as f:
         for line in f:
             line = line.strip()
 
@@ -170,7 +171,7 @@ def read_cube(path: Union[str, Path]) -> Union[LUT3D, LUT1D]:
             return LUT1D(data=normalized, size=n, title=title)
 
 
-def write_cube(lut: Union[LUT3D, LUT1D], path: Union[str, Path]) -> None:
+def write_cube(lut: LUT3D | LUT1D, path: str | Path) -> None:
     """
     Write a LUT to .cube format.
 
@@ -219,7 +220,7 @@ def write_cube(lut: Union[LUT3D, LUT1D], path: Union[str, Path]) -> None:
 # CLF (Common LUT Format) I/O
 # =============================================================================
 
-def read_clf(path: Union[str, Path]) -> LUT3D:
+def read_clf(path: str | Path) -> LUT3D:
     """
     Parse a CLF (Common LUT Format) XML file.
 
@@ -294,7 +295,7 @@ def read_clf(path: Union[str, Path]) -> LUT3D:
     return LUT3D(data=data, size=size, title=title)
 
 
-def write_clf(lut: LUT3D, path: Union[str, Path]) -> None:
+def write_clf(lut: LUT3D, path: str | Path) -> None:
     """
     Write a 3D LUT to CLF (Common LUT Format) XML.
 
@@ -492,7 +493,7 @@ def lut_from_function(
                         data[bi, gi, ri] = results[idx]
                         idx += 1
             return LUT3D(data=data, size=size)
-    except Exception:
+    except (ValueError, TypeError):
         pass
 
     # Fall back to per-point processing

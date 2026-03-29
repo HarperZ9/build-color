@@ -16,8 +16,8 @@ Methods:
     bianco         - Bianco-Schettini PC algorithm
 """
 
+
 import numpy as np
-from typing import Tuple, Optional
 
 # =============================================================================
 # Standard Illuminants (CIE 1931 xy + XYZ normalized to Y=1)
@@ -201,7 +201,7 @@ def xy_to_cct_mccamy(x: float, y: float) -> float:
     return 449.0 * n**3 + 3525.0 * n**2 + 6823.3 * n + 5520.33
 
 
-def cct_to_xy(cct: float) -> Tuple[float, float]:
+def cct_to_xy(cct: float) -> tuple[float, float]:
     """Convert CCT to CIE xy chromaticity (Hernandez-Andres approximation)."""
     T = cct
     if T < 4000:

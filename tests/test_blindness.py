@@ -2,9 +2,10 @@
 import numpy as np
 import pytest
 from quanta_color.blindness import (
-    simulate, error_map, DEFICIENCY_TYPES,
+    DEFICIENCY_TYPES,
+    error_map,
+    simulate,
 )
-
 
 # =========================================================================
 # Severity 0 returns input unchanged

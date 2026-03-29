@@ -4,14 +4,22 @@ Settings Page
 Application preferences, about information, and keyboard shortcut reference.
 """
 
-from PyQt6.QtWidgets import (
-    QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
-    QLineEdit, QComboBox, QScrollArea, QFormLayout, QFileDialog,
-    QGridLayout,
-)
 from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import (
+    QComboBox,
+    QFileDialog,
+    QFormLayout,
+    QGridLayout,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QPushButton,
+    QScrollArea,
+    QVBoxLayout,
+    QWidget,
+)
 
-from quanta_color.gui.app import C, Card, Heading, Stat
+from quanta_color.gui.app import C, Card, Heading
 
 
 class SettingsPage(QWidget):

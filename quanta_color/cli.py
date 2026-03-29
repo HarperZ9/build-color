@@ -15,6 +15,7 @@ Usage:
 
 import argparse
 import sys
+
 import numpy as np
 
 __version__ = "1.0.0"
@@ -99,7 +100,7 @@ def cmd_convert(args):
 
 def cmd_difference(args):
     """Compute color difference."""
-    from quanta_color import spaces, difference
+    from quanta_color import difference, spaces
 
     c1 = _parse_color(args.color1)
     c2 = _parse_color(args.color2)
@@ -133,7 +134,7 @@ def cmd_difference(args):
 
 def cmd_harmony(args):
     """Generate color harmony palette."""
-    from quanta_color.harmony import generate, SCHEMES
+    from quanta_color.harmony import generate
 
     color = _parse_color(args.color)
     palette = generate(color, args.scheme)
@@ -149,7 +150,7 @@ def cmd_harmony(args):
 
 def cmd_adapt(args):
     """Chromatic adaptation."""
-    from quanta_color.adaptation import adapt, ILLUMINANTS, MATRICES
+    from quanta_color.adaptation import ILLUMINANTS, adapt
 
     color = np.array([float(x) for x in args.color.split(",")])
 
@@ -171,7 +172,7 @@ def cmd_adapt(args):
 
 def cmd_info(args):
     """Show comprehensive color info."""
-    from quanta_color import spaces, difference, adaptation
+    from quanta_color import spaces
 
     color = _parse_color(args.color)
     xyz = spaces.srgb_to_xyz(color)
@@ -213,7 +214,7 @@ def cmd_info(args):
 
 def cmd_spectrum(args):
     """Generate spectral data."""
-    from quanta_color.spectral import planck_radiation, CMF_WAVELENGTHS, blackbody_chromaticity
+    from quanta_color.spectral import CMF_WAVELENGTHS, blackbody_chromaticity, planck_radiation
 
     T = args.temp
     wavelengths = CMF_WAVELENGTHS

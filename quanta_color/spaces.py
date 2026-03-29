@@ -25,8 +25,8 @@ Spaces:
     HSV / HSL   - Hue-based models
 """
 
+
 import numpy as np
-from typing import Tuple, Optional
 
 # =============================================================================
 # Matrices (high-precision float64)
@@ -483,10 +483,10 @@ def srgb_to_acescg(srgb: np.ndarray) -> np.ndarray:
 # =============================================================================
 
 def primaries_to_matrix(
-    r_xy: Tuple[float, float],
-    g_xy: Tuple[float, float],
-    b_xy: Tuple[float, float],
-    w_xy: Tuple[float, float],
+    r_xy: tuple[float, float],
+    g_xy: tuple[float, float],
+    b_xy: tuple[float, float],
+    w_xy: tuple[float, float],
 ) -> np.ndarray:
     """Compute RGB-to-XYZ matrix from chromaticity coordinates."""
     def xy_to_XYZ(x, y):

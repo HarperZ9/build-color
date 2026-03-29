@@ -5,14 +5,20 @@ Load an image and display preview, metadata, and optional
 color analysis (gamut coverage, dominant colors) when available.
 """
 
-from PyQt6.QtWidgets import (
-    QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
-    QScrollArea, QFileDialog, QSizePolicy, QGridLayout,
-)
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPixmap
+from PyQt6.QtWidgets import (
+    QFileDialog,
+    QGridLayout,
+    QHBoxLayout,
+    QLabel,
+    QPushButton,
+    QScrollArea,
+    QVBoxLayout,
+    QWidget,
+)
 
-from quanta_color.gui.app import C, Card, Heading, Stat
+from quanta_color.gui.app import C, Card, Heading
 from quanta_color.gui.widgets.color_swatch import ColorSwatch
 
 
@@ -207,8 +213,8 @@ class ImageAnalyzerPage(QWidget):
                 widget.deleteLater()
 
         try:
-            from PIL import Image
             import numpy as np
+            from PIL import Image
         except ImportError:
             self._analysis_status.setText(
                 "Install Pillow for image analysis:  pip install Pillow"
@@ -238,7 +244,7 @@ class ImageAnalyzerPage(QWidget):
                 f"Analyzed {pixel_count:,} pixels  \u2014  Top dominant colors:"
             )
 
-            for rgb_tuple, count in common:
+            for rgb_tuple, _count in common:
                 col_layout = QVBoxLayout()
                 col_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
                 sw = ColorSwatch(48, 48)

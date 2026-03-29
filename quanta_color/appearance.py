@@ -19,10 +19,9 @@ Functions:
     hue_quadrature      - h -> H (unique-hue interpolation)
 """
 
-import numpy as np
 from dataclasses import dataclass
-from typing import Tuple, Optional, Dict
 
+import numpy as np
 
 # =============================================================================
 # Viewing Conditions
@@ -163,9 +162,9 @@ def _inv_hue_quadrature(H: float) -> float:
     h_next = hi[i + 1]
     e_next = ei[i + 1]
 
-    p = (H - H_i) * (e_next * h_i - e_i * h_next)
-    q = -100.0 * h_next * e_i
-    r = 100.0 * h_i * e_next
+    (H - H_i) * (e_next * h_i - e_i * h_next)
+    -100.0 * h_next * e_i
+    100.0 * h_i * e_next
 
     # H = H_i + 100 * ((h' - h_i)/e_i) / ((h' - h_i)/e_i + (h_{i+1} - h')/e_{i+1})
     # Solve for h':
@@ -232,7 +231,7 @@ def _nonlinear_adaptation_inv(y: np.ndarray, F_L: float) -> np.ndarray:
 # CIECAM02 Forward Model
 # =============================================================================
 
-def _compute_adaptation_params(vc: ViewingConditions) -> Dict:
+def _compute_adaptation_params(vc: ViewingConditions) -> dict:
     """
     Precompute all adaptation parameters from viewing conditions.
 
@@ -376,7 +375,7 @@ def ciecam02_forward(
     # Step 7: Eccentricity factor and hue quadrature
     H = hue_quadrature(h)
 
-    h_rad = np.radians(h)
+    np.radians(h)
 
     # Eccentricity
     h_p = h
@@ -614,7 +613,7 @@ class CAM16Color:
     H: float
 
 
-def _compute_cam16_params(vc: ViewingConditions) -> Dict:
+def _compute_cam16_params(vc: ViewingConditions) -> dict:
     """
     Precompute adaptation parameters for the CAM16 model.
 

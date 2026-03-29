@@ -12,8 +12,8 @@ Methods:
     perceptual      - Binary search for max chroma at given hue/lightness
 """
 
+
 import numpy as np
-from typing import Optional
 
 
 def clip(rgb: np.ndarray) -> np.ndarray:
@@ -51,8 +51,7 @@ def oklab_chroma_reduce(srgb: np.ndarray, target_gamut: str = "srgb") -> np.ndar
     CSS Color Module Level 4 approach.
     """
     from quanta_color.spaces import (
-        srgb_to_oklab, oklab_to_linear_srgb, linear_to_srgb,
-        srgb_to_linear, oklab_to_oklch, oklch_to_oklab,
+        srgb_to_oklab,
     )
 
     srgb = np.asarray(srgb, dtype=np.float64)
@@ -73,7 +72,10 @@ def oklab_chroma_reduce(srgb: np.ndarray, target_gamut: str = "srgb") -> np.ndar
 def _reduce_single(oklab: np.ndarray) -> np.ndarray:
     """Reduce chroma for a single Oklab color."""
     from quanta_color.spaces import (
-        oklab_to_linear_srgb, linear_to_srgb, oklab_to_oklch, oklch_to_oklab,
+        linear_to_srgb,
+        oklab_to_linear_srgb,
+        oklab_to_oklch,
+        oklch_to_oklab,
     )
 
     # Check if already in gamut
