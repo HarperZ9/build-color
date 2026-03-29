@@ -1,12 +1,11 @@
 """Tests for color naming module."""
 import numpy as np
-import pytest
 from quanta_color.naming import (
-    nearest_css_name,
-    nearest_basic_name,
-    color_description,
-    all_css_colors,
     CSS_COLORS,
+    all_css_colors,
+    color_description,
+    nearest_basic_name,
+    nearest_css_name,
 )
 
 
@@ -131,7 +130,7 @@ class TestAllCSSColors:
 
     def test_values_are_rgb_tuples(self):
         result = all_css_colors()
-        for name, rgb in result.items():
+        for _name, rgb in result.items():
             assert len(rgb) == 3
             assert all(0 <= c <= 255 for c in rgb)
 

@@ -2,10 +2,12 @@
 import numpy as np
 import pytest
 from quanta_color.gamut import (
-    clip, compress, oklab_chroma_reduce,
-    is_in_gamut, gamut_coverage,
+    clip,
+    compress,
+    gamut_coverage,
+    is_in_gamut,
+    oklab_chroma_reduce,
 )
-
 
 # =========================================================================
 # clip
@@ -101,24 +103,24 @@ class TestIsInGamut:
 
     def test_in_gamut_valid(self):
         rgb = np.array([0.5, 0.5, 0.5])
-        assert is_in_gamut(rgb) == True
+        assert is_in_gamut(rgb)
 
     def test_out_of_gamut_above(self):
         rgb = np.array([1.1, 0.5, 0.5])
-        assert is_in_gamut(rgb) == False
+        assert not is_in_gamut(rgb)
 
     def test_out_of_gamut_below(self):
         rgb = np.array([0.5, -0.1, 0.5])
-        assert is_in_gamut(rgb) == False
+        assert not is_in_gamut(rgb)
 
     def test_boundary_with_tolerance(self):
         """Values slightly outside [0,1] but within tolerance should be in-gamut."""
         rgb = np.array([1.0005, 0.5, -0.0005])
-        assert is_in_gamut(rgb, tolerance=0.001) == True
+        assert is_in_gamut(rgb, tolerance=0.001)
 
     def test_boundary_without_tolerance(self):
         rgb = np.array([1.0005, 0.5, -0.0005])
-        assert is_in_gamut(rgb, tolerance=0.0) == False
+        assert not is_in_gamut(rgb, tolerance=0.0)
 
     def test_batch_gamut_check(self):
         rgb = np.array([
@@ -129,14 +131,14 @@ class TestIsInGamut:
         ])
         result = is_in_gamut(rgb)
         assert result.shape == (4,)
-        assert result[0] == True
-        assert result[1] == False
-        assert result[2] == True
-        assert result[3] == True
+        assert result[0]
+        assert not result[1]
+        assert result[2]
+        assert result[3]
 
     def test_pure_primaries_in_gamut(self):
         for color in [[1, 0, 0], [0, 1, 0], [0, 0, 1]]:
-            assert is_in_gamut(np.array(color, dtype=float)) == True
+            assert is_in_gamut(np.array(color, dtype=float))
 
 
 # =========================================================================

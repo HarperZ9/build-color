@@ -13,23 +13,23 @@ Schemes:
     monochromatic       - Same hue, varied lightness/chroma
 """
 
+
 import numpy as np
-from typing import List, Tuple
 
 
 def _rgb_to_oklch(rgb: np.ndarray) -> np.ndarray:
     """Quick sRGB -> Oklch for harmony calculations."""
-    from quanta_color.spaces import srgb_to_oklab, oklab_to_oklch
+    from quanta_color.spaces import oklab_to_oklch, srgb_to_oklab
     return oklab_to_oklch(srgb_to_oklab(rgb))
 
 
 def _oklch_to_rgb(oklch: np.ndarray) -> np.ndarray:
     """Quick Oklch -> sRGB for harmony calculations."""
-    from quanta_color.spaces import oklch_to_oklab, oklab_to_srgb
+    from quanta_color.spaces import oklab_to_srgb, oklch_to_oklab
     return oklab_to_srgb(oklch_to_oklab(oklch))
 
 
-def complementary(base_rgb: np.ndarray) -> List[np.ndarray]:
+def complementary(base_rgb: np.ndarray) -> list[np.ndarray]:
     """Generate complementary color (opposite on hue wheel)."""
     lch = _rgb_to_oklch(np.asarray(base_rgb))
     comp = lch.copy()
@@ -37,7 +37,7 @@ def complementary(base_rgb: np.ndarray) -> List[np.ndarray]:
     return [base_rgb, np.clip(_oklch_to_rgb(comp), 0, 1)]
 
 
-def split_complementary(base_rgb: np.ndarray, angle: float = 30.0) -> List[np.ndarray]:
+def split_complementary(base_rgb: np.ndarray, angle: float = 30.0) -> list[np.ndarray]:
     """Two colors flanking the complement."""
     lch = _rgb_to_oklch(np.asarray(base_rgb))
     c1, c2 = lch.copy(), lch.copy()
@@ -46,7 +46,7 @@ def split_complementary(base_rgb: np.ndarray, angle: float = 30.0) -> List[np.nd
     return [base_rgb, np.clip(_oklch_to_rgb(c1), 0, 1), np.clip(_oklch_to_rgb(c2), 0, 1)]
 
 
-def triadic(base_rgb: np.ndarray) -> List[np.ndarray]:
+def triadic(base_rgb: np.ndarray) -> list[np.ndarray]:
     """Three equally spaced colors (120 degrees apart)."""
     lch = _rgb_to_oklch(np.asarray(base_rgb))
     results = [base_rgb]
@@ -57,7 +57,7 @@ def triadic(base_rgb: np.ndarray) -> List[np.ndarray]:
     return results
 
 
-def tetradic(base_rgb: np.ndarray) -> List[np.ndarray]:
+def tetradic(base_rgb: np.ndarray) -> list[np.ndarray]:
     """Four equally spaced colors (90 degrees apart)."""
     lch = _rgb_to_oklch(np.asarray(base_rgb))
     results = [base_rgb]
@@ -68,7 +68,7 @@ def tetradic(base_rgb: np.ndarray) -> List[np.ndarray]:
     return results
 
 
-def analogous(base_rgb: np.ndarray, angle: float = 30.0, count: int = 5) -> List[np.ndarray]:
+def analogous(base_rgb: np.ndarray, angle: float = 30.0, count: int = 5) -> list[np.ndarray]:
     """Adjacent hues, evenly spread around the base."""
     lch = _rgb_to_oklch(np.asarray(base_rgb))
     results = []
@@ -80,7 +80,7 @@ def analogous(base_rgb: np.ndarray, angle: float = 30.0, count: int = 5) -> List
     return results
 
 
-def monochromatic(base_rgb: np.ndarray, count: int = 5) -> List[np.ndarray]:
+def monochromatic(base_rgb: np.ndarray, count: int = 5) -> list[np.ndarray]:
     """Same hue, varied lightness."""
     lch = _rgb_to_oklch(np.asarray(base_rgb))
     results = []
@@ -102,7 +102,7 @@ SCHEMES = {
 }
 
 
-def generate(base_rgb: np.ndarray, scheme: str = "complementary", **kwargs) -> List[np.ndarray]:
+def generate(base_rgb: np.ndarray, scheme: str = "complementary", **kwargs) -> list[np.ndarray]:
     """Generate a color harmony palette."""
     fn = SCHEMES.get(scheme.lower())
     if fn is None:

@@ -6,9 +6,9 @@ Hover shows the hex value as a tooltip; left-click copies hex to clipboard;
 right-click offers Copy Hex / Copy RGB / Copy Oklab.
 """
 
-from PyQt6.QtWidgets import QWidget, QMenu, QApplication
-from PyQt6.QtCore import Qt, QRectF
-from PyQt6.QtGui import QColor, QPainter, QPen, QAction
+from PyQt6.QtCore import QRectF, Qt
+from PyQt6.QtGui import QAction, QColor, QPainter, QPen
+from PyQt6.QtWidgets import QApplication, QMenu, QWidget
 
 
 class ColorSwatch(QWidget):
@@ -36,18 +36,10 @@ class ColorSwatch(QWidget):
     # --- Internals ---
 
     def _hex(self) -> str:
-        return "#{:02x}{:02x}{:02x}".format(
-            int(self._r * 255 + 0.5),
-            int(self._g * 255 + 0.5),
-            int(self._b * 255 + 0.5),
-        )
+        return f"#{int(self._r * 255 + 0.5):02x}{int(self._g * 255 + 0.5):02x}{int(self._b * 255 + 0.5):02x}"
 
     def _rgb_str(self) -> str:
-        return "rgb({}, {}, {})".format(
-            int(self._r * 255 + 0.5),
-            int(self._g * 255 + 0.5),
-            int(self._b * 255 + 0.5),
-        )
+        return f"rgb({int(self._r * 255 + 0.5)}, {int(self._g * 255 + 0.5)}, {int(self._b * 255 + 0.5)})"
 
     def _oklab_str(self) -> str:
         """Approximate Oklab from linear sRGB."""
@@ -113,7 +105,7 @@ class ColorSwatch(QWidget):
         rgb_act.triggered.connect(lambda: self._copy_to_clipboard(self._rgb_str()))
         menu.addAction(rgb_act)
 
-        oklab_act = QAction(f"Copy Oklab", self)
+        oklab_act = QAction("Copy Oklab", self)
         oklab_act.triggered.connect(lambda: self._copy_to_clipboard(self._oklab_str()))
         menu.addAction(oklab_act)
 

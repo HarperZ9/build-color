@@ -2,12 +2,16 @@
 import numpy as np
 import pytest
 from quanta_color.difference import (
-    delta_e_76, delta_e_94, delta_e_2000,
-    delta_e_cmc, delta_e_hyab,
-    delta_e_jzazbz, delta_e_oklab,
-    compare_all, contrast_ratio,
+    compare_all,
+    contrast_ratio,
+    delta_e_76,
+    delta_e_94,
+    delta_e_2000,
+    delta_e_cmc,
+    delta_e_hyab,
+    delta_e_jzazbz,
+    delta_e_oklab,
 )
-
 
 # =========================================================================
 # CIEDE2000 known pairs from Sharma et al. 2005 (Table 1)

@@ -15,8 +15,8 @@ Metrics:
     contrast_ratio  - WCAG contrast ratio
 """
 
+
 import numpy as np
-from typing import Tuple
 
 
 def delta_e_76(lab1: np.ndarray, lab2: np.ndarray) -> np.ndarray:

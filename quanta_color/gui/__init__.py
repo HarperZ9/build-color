@@ -7,7 +7,9 @@ Launch the application with quanta_color.gui.launch()
 
 def launch():
     import sys
+
     from PyQt6.QtWidgets import QApplication
+
     from quanta_color.gui.app import QuantaColorWindow
 
     # Windows taskbar icon fix

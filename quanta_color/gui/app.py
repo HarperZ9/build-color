@@ -8,30 +8,40 @@ page transitions, and the shared Calibrate Pro visual framework.
 import logging
 import sys
 from pathlib import Path
-from typing import Optional
 
 logger = logging.getLogger(__name__)
 
-from PyQt6.QtWidgets import (
-    QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
-    QLabel, QPushButton, QFrame, QStackedWidget, QMenuBar, QMenu,
-    QStatusBar, QMessageBox, QFileDialog, QScrollArea,
-    QSizePolicy, QGridLayout, QGroupBox, QProgressBar,
-    QGraphicsDropShadowEffect, QGraphicsOpacityEffect,
-)
 from PyQt6.QtCore import (
-    Qt, QSize, QTimer, pyqtSignal, QSettings,
-    QPropertyAnimation, QEasingCurve, QPoint,
+    QEasingCurve,
+    QPointF,
+    QPropertyAnimation,
+    QRectF,
+    QSettings,
+    Qt,
 )
 from PyQt6.QtGui import (
-    QAction, QFont, QColor, QIcon, QPixmap, QPainter, QPen,
-    QLinearGradient, QPolygonF, QShortcut, QKeySequence,
+    QAction,
+    QColor,
+    QIcon,
+    QKeySequence,
+    QPainter,
+    QPen,
+    QPixmap,
+    QShortcut,
 )
-from PyQt6.QtCore import QPointF, QRectF
-
-from quanta_ui.theme import C, STYLE
-from quanta_ui.widgets import Card, StatusDot, Heading, Stat, NavButton, Sidebar, ToastNotification
-
+from PyQt6.QtWidgets import (
+    QFileDialog,
+    QGraphicsOpacityEffect,
+    QHBoxLayout,
+    QLabel,
+    QMainWindow,
+    QMessageBox,
+    QStackedWidget,
+    QVBoxLayout,
+    QWidget,
+)
+from quanta_ui.theme import STYLE, C
+from quanta_ui.widgets import Heading, Sidebar, ToastNotification
 
 APP_NAME = "Quanta Color"
 APP_VERSION = "1.0.0"
@@ -238,7 +248,7 @@ class QuantaColorWindow(QMainWindow):
         try:
             from quanta_color.gui.pages.dashboard import DashboardPage
             self.stack.addWidget(DashboardPage())
-        except Exception as e:
+        except (ImportError, AttributeError, TypeError) as e:
             logger.warning("Failed to load DashboardPage: %s", e)
             self.stack.addWidget(PlaceholderPage("Dashboard"))
 
@@ -246,7 +256,7 @@ class QuantaColorWindow(QMainWindow):
         try:
             from quanta_color.gui.pages.image_analyzer import ImageAnalyzerPage
             self.stack.addWidget(ImageAnalyzerPage())
-        except Exception as e:
+        except (ImportError, AttributeError, TypeError) as e:
             logger.warning("Failed to load ImageAnalyzerPage: %s", e)
             self.stack.addWidget(PlaceholderPage("Image Analyzer"))
 
@@ -254,7 +264,7 @@ class QuantaColorWindow(QMainWindow):
         try:
             from quanta_color.gui.pages.color_inspector import ColorInspectorPage
             self.stack.addWidget(ColorInspectorPage())
-        except Exception as e:
+        except (ImportError, AttributeError, TypeError) as e:
             logger.warning("Failed to load ColorInspectorPage: %s", e)
             self.stack.addWidget(PlaceholderPage("Color Inspector"))
 
@@ -262,7 +272,7 @@ class QuantaColorWindow(QMainWindow):
         try:
             from quanta_color.gui.pages.lut_workshop import LUTWorkshopPage
             self.stack.addWidget(LUTWorkshopPage())
-        except Exception as e:
+        except (ImportError, AttributeError, TypeError) as e:
             logger.warning("Failed to load LUTWorkshopPage: %s", e)
             self.stack.addWidget(PlaceholderPage("LUT Workshop"))
 
@@ -270,7 +280,7 @@ class QuantaColorWindow(QMainWindow):
         try:
             from quanta_color.gui.pages.palette_studio import PaletteStudioPage
             self.stack.addWidget(PaletteStudioPage())
-        except Exception as e:
+        except (ImportError, AttributeError, TypeError) as e:
             logger.warning("Failed to load PaletteStudioPage: %s", e)
             self.stack.addWidget(PlaceholderPage("Palette Studio"))
 
@@ -278,7 +288,7 @@ class QuantaColorWindow(QMainWindow):
         try:
             from quanta_color.gui.pages.settings import SettingsPage
             self.stack.addWidget(SettingsPage())
-        except Exception as e:
+        except (ImportError, AttributeError, TypeError) as e:
             logger.warning("Failed to load SettingsPage: %s", e)
             self.stack.addWidget(PlaceholderPage("Settings"))
 
@@ -314,7 +324,7 @@ class QuantaColorWindow(QMainWindow):
                 anim.finished.connect(lambda: target.setGraphicsEffect(None))
                 self._page_anim = anim  # prevent GC
                 anim.start()
-            except Exception:
+            except (AttributeError, RuntimeError):
                 self.stack.setCurrentIndex(index)
         else:
             self.stack.setCurrentIndex(index)

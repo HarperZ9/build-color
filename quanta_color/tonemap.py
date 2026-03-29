@@ -23,8 +23,8 @@ Input: linear HDR values (0 to unbounded)
 Output: SDR values (0 to 1)
 """
 
+
 import numpy as np
-from typing import Optional
 
 
 def reinhard(L: np.ndarray) -> np.ndarray:
@@ -93,7 +93,7 @@ def uchimura(x: np.ndarray, P: float = 1.0, a: float = 1.0,
     C2 = (a * P) / (P - S1)
     CP = -C2 / P
 
-    w0 = 1.0 - np.where(x < m, x / m, 1.0)
+    1.0 - np.where(x < m, x / m, 1.0)
     w1 = np.where(x < m, 0.0, 1.0)
 
     T = m * np.power(x / m, c) + b
@@ -267,7 +267,7 @@ def knee(L: np.ndarray, knee_start: float = 0.5,
         np.clip(excess / (max_output - knee_start + 1e-10), 0, None),
         power
     ) * (max_output - knee_start)
-    return np.where(L <= knee_start, L, compressed)
+    return np.where(knee_start >= L, L, compressed)
 
 
 # =============================================================================

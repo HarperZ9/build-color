@@ -5,9 +5,9 @@ QPainter widget that draws a tone mapping response curve with grid,
 identity diagonal, and the actual curve data.  Uses the shared C palette.
 """
 
+from PyQt6.QtCore import QPointF, QRectF, Qt
+from PyQt6.QtGui import QColor, QFont, QPainter, QPainterPath, QPen
 from PyQt6.QtWidgets import QWidget
-from PyQt6.QtCore import Qt, QPointF, QRectF
-from PyQt6.QtGui import QColor, QPainter, QPen, QFont, QPainterPath
 
 
 # Import C from the app module (lazy to avoid circular imports at module level)

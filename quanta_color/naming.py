@@ -11,8 +11,8 @@ Functions:
     all_css_colors      - Full CSS named colors dictionary
 """
 
+
 import numpy as np
-from typing import Tuple
 
 # =============================================================================
 # CSS Named Colors — all 148 (name -> (R, G, B) in 0-255)
@@ -265,7 +265,7 @@ def color_description(rgb: np.ndarray) -> str:
     Returns:
         Description string, e.g., "dark muted red", "light vivid blue".
     """
-    from quanta_color.spaces import srgb_to_oklab, oklab_to_oklch
+    from quanta_color.spaces import oklab_to_oklch, srgb_to_oklab
     rgb = np.asarray(rgb, dtype=np.float64)
     oklab = srgb_to_oklab(rgb)
     oklch = oklab_to_oklch(oklab)

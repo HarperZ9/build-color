@@ -5,13 +5,19 @@ Generate harmonious color palettes from a base color, preview
 under color vision deficiency simulations, and export as CSS/JSON.
 """
 
-from PyQt6.QtWidgets import (
-    QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
-    QLineEdit, QScrollArea, QSizePolicy, QApplication,
-)
 from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import (
+    QApplication,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QPushButton,
+    QScrollArea,
+    QVBoxLayout,
+    QWidget,
+)
 
-from quanta_color.gui.app import C, Card, Heading, Stat
+from quanta_color.gui.app import C, Card, Heading
 from quanta_color.gui.widgets.color_swatch import ColorSwatch
 
 
@@ -234,9 +240,7 @@ class PaletteStudioPage(QWidget):
             sw = ColorSwatch(56, 56)
             sw.set_color(r, g, b)
 
-            hex_str = "#{:02x}{:02x}{:02x}".format(
-                int(r * 255 + 0.5), int(g * 255 + 0.5), int(b * 255 + 0.5)
-            )
+            hex_str = f"#{int(r * 255 + 0.5):02x}{int(g * 255 + 0.5):02x}{int(b * 255 + 0.5):02x}"
             lbl = QLabel(hex_str)
             lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
             lbl.setStyleSheet(
@@ -287,6 +291,7 @@ class PaletteStudioPage(QWidget):
                 else:
                     try:
                         import numpy as np
+
                         from quanta_color.blindness import simulate
                         srgb = np.array([r, g, b])
                         sim = simulate(srgb, deficiency, severity=1.0)
@@ -306,9 +311,7 @@ class PaletteStudioPage(QWidget):
     def _copy_css(self):
         lines = [":root {"]
         for i, (r, g, b) in enumerate(self._palette_rgb):
-            hex_str = "#{:02x}{:02x}{:02x}".format(
-                int(r * 255 + 0.5), int(g * 255 + 0.5), int(b * 255 + 0.5)
-            )
+            hex_str = f"#{int(r * 255 + 0.5):02x}{int(g * 255 + 0.5):02x}{int(b * 255 + 0.5):02x}"
             lines.append(f"  --color-{i + 1}: {hex_str};")
         lines.append("}")
         text = "\n".join(lines)
@@ -320,9 +323,7 @@ class PaletteStudioPage(QWidget):
         import json
         data = []
         for r, g, b in self._palette_rgb:
-            hex_str = "#{:02x}{:02x}{:02x}".format(
-                int(r * 255 + 0.5), int(g * 255 + 0.5), int(b * 255 + 0.5)
-            )
+            hex_str = f"#{int(r * 255 + 0.5):02x}{int(g * 255 + 0.5):02x}{int(b * 255 + 0.5):02x}"
             data.append({
                 "hex": hex_str,
                 "rgb": [int(r * 255 + 0.5), int(g * 255 + 0.5), int(b * 255 + 0.5)],

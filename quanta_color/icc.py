@@ -13,11 +13,11 @@ Usage:
     profile.save("display.icc")
 """
 
-import struct
-import hashlib
 import datetime
+import hashlib
+import struct
 from dataclasses import dataclass
-from typing import Tuple, Optional, List
+
 import numpy as np
 
 
@@ -38,10 +38,10 @@ class ICCProfile:
 
 
 def create_display_profile(
-    red_xy: Tuple[float, float] = (0.6400, 0.3300),
-    green_xy: Tuple[float, float] = (0.3000, 0.6000),
-    blue_xy: Tuple[float, float] = (0.1500, 0.0600),
-    white_xy: Tuple[float, float] = (0.3127, 0.3290),
+    red_xy: tuple[float, float] = (0.6400, 0.3300),
+    green_xy: tuple[float, float] = (0.3000, 0.6000),
+    blue_xy: tuple[float, float] = (0.1500, 0.0600),
+    white_xy: tuple[float, float] = (0.3127, 0.3290),
     gamma: float = 2.2,
     name: str = "Quanta Color Display Profile",
     description: str = "",
@@ -107,7 +107,7 @@ def create_display_profile(
     tags["bTRC"] = _make_curve_tag(trc)
 
     # Chromatic adaptation (D65 -> D50, Bradford)
-    from quanta_color.adaptation import get_adaptation_matrix, ILLUMINANTS
+    from quanta_color.adaptation import ILLUMINANTS, get_adaptation_matrix
     chad = get_adaptation_matrix(ILLUMINANTS["D65"], ILLUMINANTS["D50"], "bradford")
     tags["chad"] = _make_s15f16_matrix_tag(chad)
 
@@ -129,7 +129,7 @@ def _generate_trc(gamma: float, points: int = 256) -> np.ndarray:
 
 def _make_text_tag(text: str) -> bytes:
     """Create a 'desc' tag (profileDescriptionTag)."""
-    encoded = text.encode("ascii", errors="replace")
+    text.encode("ascii", errors="replace")
     # mluc (multi-localized unicode) tag type
     sig = b"mluc"
     reserved = b"\x00" * 4

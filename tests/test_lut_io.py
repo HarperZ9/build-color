@@ -1,18 +1,19 @@
 """Tests for LUT I/O module."""
-import numpy as np
-import pytest
 import tempfile
 from pathlib import Path
+
+import numpy as np
+import pytest
 from quanta_color.lut_io import (
-    LUT3D,
     LUT1D,
-    read_cube,
-    write_cube,
-    read_clf,
-    write_clf,
-    identity_lut,
+    LUT3D,
     apply_lut,
+    identity_lut,
     lut_from_function,
+    read_clf,
+    read_cube,
+    write_clf,
+    write_cube,
 )
 
 

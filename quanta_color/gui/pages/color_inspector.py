@@ -5,17 +5,21 @@ Comprehensive color analysis tool with bidirectional input controls,
 multi-space conversion, CVD simulation, and color difference metrics.
 """
 
-import re
 
-from PyQt6.QtWidgets import (
-    QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit,
-    QSlider, QScrollArea, QGridLayout, QSizePolicy, QFormLayout,
-)
 from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import (
+    QGridLayout,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QScrollArea,
+    QSlider,
+    QVBoxLayout,
+    QWidget,
+)
 
-from quanta_color.gui.app import C, Card, Heading, Stat
+from quanta_color.gui.app import C, Card, Heading
 from quanta_color.gui.widgets.color_swatch import ColorSwatch
-
 
 # CSS named colors for nearest-name fallback
 _CSS_COLORS = {
@@ -360,6 +364,7 @@ class ColorInspectorPage(QWidget):
     def _update_spaces(self, r: float, g: float, b: float):
         try:
             import numpy as np
+
             from quanta_color import spaces
             srgb = np.array([r, g, b])
 
@@ -400,7 +405,8 @@ class ColorInspectorPage(QWidget):
     def _update_metrics(self, r: float, g: float, b: float):
         try:
             import numpy as np
-            from quanta_color import spaces, difference
+
+            from quanta_color import difference, spaces
 
             srgb = np.array([r, g, b])
             xyz = spaces.srgb_to_xyz(srgb)
@@ -451,6 +457,7 @@ class ColorInspectorPage(QWidget):
         self._cvd_swatches["Normal"].set_color(r, g, b)
         try:
             import numpy as np
+
             from quanta_color.blindness import simulate
 
             srgb = np.array([r, g, b])
@@ -484,7 +491,8 @@ class ColorInspectorPage(QWidget):
 
         try:
             import numpy as np
-            from quanta_color import spaces, difference
+
+            from quanta_color import difference, spaces
 
             srgb1 = np.array([self._r / 255.0, self._g / 255.0, self._b / 255.0])
             srgb2 = np.array([rf2, gf2, bf2])

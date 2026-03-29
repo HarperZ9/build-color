@@ -2,15 +2,17 @@
 import numpy as np
 import pytest
 from quanta_color.spectral import (
-    planck_radiation, blackbody_chromaticity,
-    daylight_chromaticity,
-    spd_to_xyz,
-    dominant_wavelength,
+    CMF_WAVELENGTHS,
+    CMF_X,
+    CMF_Y,
+    CMF_Z,
+    blackbody_chromaticity,
     cauchy_ior,
-    CMF_WAVELENGTHS, CMF_X, CMF_Y, CMF_Z,
-    C1, C2,
+    daylight_chromaticity,
+    dominant_wavelength,
+    planck_radiation,
+    spd_to_xyz,
 )
-
 
 # =========================================================================
 # Planck blackbody
