@@ -14,7 +14,7 @@ Functions:
 import numpy as np
 
 # =============================================================================
-# CSS Named Colors — all 148 (name -> (R, G, B) in 0-255)
+# CSS Named Colors - all 148 (name -> (R, G, B) in 0-255)
 # =============================================================================
 
 CSS_COLORS: dict[str, tuple[int, int, int]] = {
@@ -274,7 +274,7 @@ def color_description(rgb: np.ndarray) -> str:
     oklch = oklab_to_oklch(oklab)
     L, C, h = float(oklch[0]), float(oklch[1]), float(oklch[2])
 
-    # Achromatic check — Oklab can produce small non-zero chroma
+    # Achromatic check - Oklab can produce small non-zero chroma
     # for perfectly neutral colors due to matrix precision
     if C < 0.035:
         if L < 0.15:

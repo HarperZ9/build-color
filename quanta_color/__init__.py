@@ -1,5 +1,5 @@
 """
-Quanta Color — Professional Color Science Library
+Quanta Color - Professional Color Science Library
 
 Comprehensive color science toolkit for display calibration, HDR processing,
 color grading, and image processing.

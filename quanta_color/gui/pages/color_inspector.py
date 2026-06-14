@@ -451,7 +451,7 @@ class ColorInspectorPage(QWidget):
             lum = xyz[1]
             self._metric_labels["Luminance"].setText(f"{lum:.4f}")
 
-            # Dominant wavelength — approximate from xy chromaticity
+            # Dominant wavelength - approximate from xy chromaticity
             xyY = spaces.xyz_to_xyY(xyz)
             x, y = xyY[0], xyY[1]
             # Simplified dominant wavelength from chromaticity
