@@ -1,5 +1,5 @@
 """
-Quanta Color — GUI Package
+Quanta Color - GUI Package
 
 Launch the application with quanta_color.gui.launch()
 """

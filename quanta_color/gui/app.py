@@ -1,5 +1,5 @@
 """
-Quanta Color — Main Application
+Quanta Color - Main Application
 
 Professional color science workbench with sidebar navigation,
 page transitions, and the shared Calibrate Pro visual framework.
@@ -49,7 +49,7 @@ APP_ORG = "Quanta Universe"
 
 
 # =============================================================================
-# Application Icon — color spectrum arc
+# Application Icon - color spectrum arc
 # =============================================================================
 
 
@@ -72,7 +72,7 @@ def make_app_icon() -> QIcon:
         cx = s * 0.5
         cy = s * 0.5
 
-        # Outer ring — spectrum arcs
+        # Outer ring - spectrum arcs
         radius = s * 0.38
         arc_width = max(2.0, s * 0.09)
 
@@ -199,7 +199,7 @@ class QuantaColorWindow(QMainWindow):
         file_menu.addSeparator()
         file_menu.addAction(QAction("E&xit", self, shortcut="Alt+F4", triggered=self.close))
 
-        # View — page navigation shortcuts
+        # View - page navigation shortcuts
         view = mb.addMenu("&View")
         for i, (name, sc) in enumerate(zip(PAGE_MENU_NAMES, PAGE_SHORTCUTS)):
             act = QAction(name, self)

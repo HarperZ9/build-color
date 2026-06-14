@@ -126,7 +126,7 @@ def delta_e_2000(lab1: np.ndarray, lab2: np.ndarray, kL: float = 1.0, kC: float 
 
 def delta_e_cmc(lab1: np.ndarray, lab2: np.ndarray, l: float = 2.0, c: float = 1.0) -> np.ndarray:
     """
-    CMC(l:c) color difference (asymmetric — order matters).
+    CMC(l:c) color difference (asymmetric - order matters).
 
     Default l=2, c=1 for acceptability. Use l=1, c=1 for perceptibility.
     Widely used in textile and print industries.

@@ -118,7 +118,7 @@ def error_map(
     deficiency: str = "deuteranopia",
 ) -> np.ndarray:
     """
-    Compute the color error — what information is lost for a CVD viewer.
+    Compute the color error - what information is lost for a CVD viewer.
 
     Returns the difference between normal and simulated vision,
     useful for checking if your design is CVD-accessible.

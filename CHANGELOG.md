@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.0.1 (2026-06-14)
+
+### Release Surface
+- Adds release-artifact packaging workflow and release checklist.
+- Publishes package artifacts for the current public package state.
+- Keeps registry publication separate from GitHub Release artifacts.
+
 ## v1.0.0 (2026-03-22)
 
 ### Features

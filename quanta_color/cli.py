@@ -260,7 +260,7 @@ def cmd_icc(args):
 def main():
     parser = argparse.ArgumentParser(
         prog="quanta-color",
-        description="Quanta Color — Professional Color Science CLI",
+        description="Quanta Color - Professional Color Science CLI",
     )
     parser.add_argument("--version", action="version", version=f"Quanta Color v{__version__}")
 

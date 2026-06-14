@@ -1,13 +1,13 @@
 [build-system]
-requires = ["setuptools>=68.0"]
+requires = ["setuptools>=77.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "quanta-color"
-version = "1.0.0"
+version = "1.0.1"
 description = "Python color-science workbench for HDR tone mapping, appearance models, Delta E, spectral, ICC, and LUT workflows"
 readme = "README.md"
-license = {text = "MIT"}
+license = "MIT"
 authors = [
     { name = "Zain Dana Harper" },
 ]

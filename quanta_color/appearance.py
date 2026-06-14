@@ -3,7 +3,7 @@ Color Appearance Models
 
 CIE color appearance models for predicting how colors look under
 real viewing conditions. Accounts for surround, adaptation, and
-luminance level — essential for cross-media color reproduction.
+luminance level - essential for cross-media color reproduction.
 
 Models:
     CIECAM02        - CIE 2002 standard (forward and inverse)
@@ -39,7 +39,7 @@ class ViewingConditions:
              64 (average surround), 16-32 (dim), 0.2 (dark).
         Y_b: Background luminance factor as a percentage of the reference
              white Y. Typically 20 for a mid-gray surround.
-        surround: Viewing surround condition — one of
+        surround: Viewing surround condition - one of
                   "average", "dim", or "dark".
     """
 
@@ -373,7 +373,7 @@ def ciecam02_forward(
     D_B = params["D_B"]
     A_w = params["A_w"]
 
-    # Step 1: CAT02 forward — cone responses
+    # Step 1: CAT02 forward - cone responses
     RGB = M_CAT02 @ xyz
 
     # Step 2: Degree-of-adaptation transform
@@ -420,7 +420,7 @@ def ciecam02_forward(
     # Step 10: Brightness Q
     Q = (4.0 / c) * (J / 100.0) ** 0.5 * (A_w + 4.0) * F_L**0.25
 
-    # Step 11: Chroma preliminary — t
+    # Step 11: Chroma preliminary - t
     t_num = (50000.0 / 13.0) * Nc * Ncb * e_t * np.sqrt(a**2 + b**2)
     t_den = RGB_a[0] + RGB_a[1] + 21.0 * RGB_a[2] / 20.0
     t = t_num / max(t_den, 1e-12)
@@ -535,7 +535,7 @@ def ciecam02_inverse(
     #                 + (21/20)*(460*p2 - 220*a - 6300*b)]
     #     = (1/1403) * [p2*(920 + 483) + a*(451-891-231) + b*(288-261-6615)]
     #     = (1/1403) * [1403*p2 + a*(-671) + b*(-6588)]  ... but let's not
-    #       simplify here — use the standard CIE 159:2004 route instead.
+    #       simplify here - use the standard CIE 159:2004 route instead.
     #
     # The standard approach: given a = gamma*cos(h), b = gamma*sin(h),
     # substitute into the constraint and solve for gamma.  Then
