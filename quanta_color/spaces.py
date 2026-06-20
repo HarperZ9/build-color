@@ -98,12 +98,14 @@ ACESCG_TO_XYZ = np.array(
 
 XYZ_TO_ACESCG = np.linalg.inv(ACESCG_TO_XYZ)
 
-# Oklab matrices
+# Oklab matrices (Bjorn Ottosson canonical). M1 maps LINEAR sRGB -> LMS and is
+# applied to linear sRGB by linear_srgb_to_oklab; it is NOT the XYZ->LMS matrix
+# (the earlier XYZ->LMS values made sRGB white land at L=1.003, not 1.0).
 _OKLAB_M1 = np.array(
     [
-        [0.8189330101, 0.3618667424, -0.1288597137],
-        [0.0329845436, 0.9293118715, 0.0361456387],
-        [0.0482003018, 0.2643662691, 0.6338517070],
+        [0.4122214708, 0.5363325363, 0.0514459929],
+        [0.2119034982, 0.6806995451, 0.1073969566],
+        [0.0883024619, 0.2817188376, 0.6299787005],
     ],
     dtype=np.float64,
 )

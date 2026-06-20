@@ -234,6 +234,15 @@ class TestKnownValues:
         assert abs(oklab[1]) < 0.03
         assert abs(oklab[2]) < 0.02
 
+    def test_oklab_white_is_canonical(self):
+        """Canonical Ottosson Oklab: sRGB white -> exactly (1, 0, 0).
+        Guards against the XYZ->LMS matrix being applied to linear sRGB, which
+        lands white at L~=1.003 (the bug this fix corrected)."""
+        oklab = srgb_to_oklab(np.array([1.0, 1.0, 1.0]))
+        assert oklab[0] == pytest.approx(1.0, abs=1e-4)
+        assert abs(oklab[1]) < 1e-4
+        assert abs(oklab[2]) < 1e-4
+
     def test_oklab_black(self):
         """sRGB black -> Oklab L should be 0."""
         oklab = srgb_to_oklab(np.array([0.0, 0.0, 0.0]))
