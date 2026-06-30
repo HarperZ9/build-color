@@ -1,4 +1,4 @@
-# Quanta Color — Usage Guide
+# Quanta Color -- Usage Guide
 
 Quanta Color is a Python color-science library with a command-line interface
 (`quanta-color`) and an optional PyQt6 GUI. This guide covers installation, the
@@ -208,5 +208,5 @@ Image Analyzer (see `quanta_color/gui/pages/`).
 
 ## See also
 
-- `README.md` — project overview and feature list.
-- `examples/` — a runnable best-effort demo of the CLI and Python API.
+- `README.md` -- project overview and feature list.
+- `examples/` -- a runnable best-effort demo of the CLI and Python API.

@@ -1,5 +1,7 @@
 # Quanta Color
 
+![Quanta Color workbench hero](docs/brand/quanta-color-hero.svg)
+
 > Python color-science workbench for perceptual spaces, HDR tone mapping, color appearance models, Delta E metrics, chromatic adaptation, spectral utilities, and ICC profile generation.
 
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -12,6 +14,17 @@ Quanta Color is a Python color-science workbench for people who need more than
 hex conversion. It covers perceptual spaces, HDR tone mapping, color appearance
 models, Delta E metrics, chromatic adaptation, spectral utilities, ICC profile
 generation, and an optional GUI.
+
+## Current status
+
+Quanta Color is a public color-science and creative-tooling workbench for
+Project Telos. It is useful as a standalone Python package, a CLI, and an
+optional GUI for artists, display-calibration work, palette design, perceptual
+analysis, HDR experiments, ICC profile generation, and AI-assisted visual
+workflows that need measurable color operations instead of ad hoc hex picking.
+
+The core package is Python 3.10+, with `numpy` for the main library and optional
+GUI/image extras for PyQt6, Pillow, and SciPy-backed workflows.
 
 ## Quick Start
 
