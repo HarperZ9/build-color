@@ -12,7 +12,7 @@ from PyQt6.QtWidgets import QWidget
 
 # Import C from the app module (lazy to avoid circular imports at module level)
 def _C():
-    from quanta_color.gui.app import C
+    from build_color.gui.app import C
 
     return C
 

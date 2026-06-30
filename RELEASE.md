@@ -1,4 +1,4 @@
-# Quanta Color v1.0.1
+# Build Color v1.0.1
 
 ## Release Type
 
@@ -15,8 +15,8 @@ normalization.
 
 ## Artifacts
 
-- `quanta_color-1.0.1-py3-none-any.whl`
-- `quanta_color-1.0.1.tar.gz`
+- `build_color-1.0.1-py3-none-any.whl`
+- `build_color-1.0.1.tar.gz`
 
 ## Publishing Notes
 

@@ -3,7 +3,7 @@
 import numpy as np
 import pytest
 
-from quanta_color.gamut import (
+from build_color.gamut import (
     clip,
     compress,
     gamut_coverage,
@@ -218,7 +218,7 @@ class TestOklabChromaReduce:
 
     def test_preserves_lightness_approximately(self):
         """Chroma reduce should preserve lightness of the color."""
-        from quanta_color.spaces import srgb_to_oklab
+        from build_color.spaces import srgb_to_oklab
 
         srgb = np.array([0.8, 0.2, 0.1])
         oklab_orig = srgb_to_oklab(srgb)

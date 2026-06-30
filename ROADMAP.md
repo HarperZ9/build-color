@@ -1,4 +1,4 @@
-# Quanta Color - Roadmap to Production
+# Build Color - Roadmap to Production
 
 Current state: 9 modules, 1,937 lines, 17 tests.
 Target state: Calibrate Pro level (~10K+ lines, 100+ tests, GUI, standalone exe, documentation).
@@ -90,24 +90,24 @@ Features from the Spectrum source that aren't ported yet.
 A command-line interface for color science operations, like `calibrate-pro` but for color math.
 
 ### 3.1 Core Commands
-- [ ] `quanta-color convert <color> --from srgb --to oklab` - Convert between any color spaces
-- [ ] `quanta-color difference <color1> <color2> --metric ciede2000` - Compute color difference
-- [ ] `quanta-color tonemap <image> --operator aces --output out.png` - Apply tone mapping to an image
-- [ ] `quanta-color adapt <color> --from D65 --to D50 --method bradford` - Chromatic adaptation
-- [ ] `quanta-color blindness <image> --type deuteranopia --output sim.png` - CVD simulation
-- [ ] `quanta-color harmony <color> --scheme triadic` - Generate palette
-- [ ] `quanta-color gamut <image> --target srgb --method oklab` - Gamut map an image
-- [ ] `quanta-color info <color>` - Show color in every space, luminance, CCT, dominant wavelength
-- [ ] `quanta-color spectrum --temp 6500 --output d65.csv` - Generate spectral data
+- [ ] `build-color convert <color> --from srgb --to oklab` - Convert between any color spaces
+- [ ] `build-color difference <color1> <color2> --metric ciede2000` - Compute color difference
+- [ ] `build-color tonemap <image> --operator aces --output out.png` - Apply tone mapping to an image
+- [ ] `build-color adapt <color> --from D65 --to D50 --method bradford` - Chromatic adaptation
+- [ ] `build-color blindness <image> --type deuteranopia --output sim.png` - CVD simulation
+- [ ] `build-color harmony <color> --scheme triadic` - Generate palette
+- [ ] `build-color gamut <image> --target srgb --method oklab` - Gamut map an image
+- [ ] `build-color info <color>` - Show color in every space, luminance, CCT, dominant wavelength
+- [ ] `build-color spectrum --temp 6500 --output d65.csv` - Generate spectral data
 
 ### 3.2 Image Processing Commands
-- [ ] `quanta-color lut create --from <profile> --size 33 --output cal.cube` - Generate LUT
-- [ ] `quanta-color lut apply <image> <lut> --output corrected.png` - Apply LUT to image
-- [ ] `quanta-color icc create --primaries r,g,b --gamma 2.2 --output display.icc` - Create ICC profile
-- [ ] `quanta-color report <image> --output report.html` - Color analysis report
+- [ ] `build-color lut create --from <profile> --size 33 --output cal.cube` - Generate LUT
+- [ ] `build-color lut apply <image> <lut> --output corrected.png` - Apply LUT to image
+- [ ] `build-color icc create --primaries r,g,b --gamma 2.2 --output display.icc` - Create ICC profile
+- [ ] `build-color report <image> --output report.html` - Color analysis report
 
 ### 3.3 Entry Point
-- [ ] `pyproject.toml` entry: `quanta-color = "quanta_color.cli:main"`
+- [ ] `pyproject.toml` entry: `build-color = "build_color.cli:main"`
 - [ ] argparse with subcommands
 - [ ] Color input parsing: hex (#ff0000), rgb(255,0,0), lab(50,25,-10), oklch(0.5,0.15,30)
 - [ ] Image I/O via Pillow (PNG, JPEG, TIFF, EXR)
@@ -194,9 +194,9 @@ PyQt6 application for visual color science exploration.
 ## Phase 6: Integration & Ecosystem (Week 3-4)
 
 ### 6.1 Calibrate Pro Integration
-- [ ] Replace Calibrate Pro's `core/color_math.py` with `import quanta_color`
+- [ ] Replace Calibrate Pro's `core/color_math.py` with `import build_color`
 - [ ] Verify all 197 Calibrate Pro tests still pass
-- [ ] Shared dependency: Calibrate Pro depends on quanta-color
+- [ ] Shared dependency: Calibrate Pro depends on build-color
 
 ### 6.2 Image Format Support
 - [ ] PNG/JPEG/TIFF via Pillow

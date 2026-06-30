@@ -47,18 +47,18 @@ def histogram(
         data = pixels
         _range_min, _range_max = 0.0, 1.0
     elif space == "oklab":
-        from quanta_color.spaces import srgb_to_oklab
+        from build_color.spaces import srgb_to_oklab
 
         data = srgb_to_oklab(pixels)
         _range_min, _range_max = -0.5, 1.5
     elif space == "lab":
-        from quanta_color.spaces import srgb_to_xyz, xyz_to_lab
+        from build_color.spaces import srgb_to_xyz, xyz_to_lab
 
         xyz = srgb_to_xyz(pixels)
         data = xyz_to_lab(xyz)
         _range_min, _range_max = -128.0, 128.0
     elif space == "hsv":
-        from quanta_color.spaces import rgb_to_hsv
+        from build_color.spaces import rgb_to_hsv
 
         data = rgb_to_hsv(pixels)
         _range_min, _range_max = 0.0, 360.0
@@ -117,13 +117,13 @@ def gamut_coverage(
     tolerance = 0.001
 
     if target == "srgb":
-        from quanta_color.spaces import srgb_to_linear
+        from build_color.spaces import srgb_to_linear
 
         linear = srgb_to_linear(pixels)
         in_gamut = np.all(linear >= -tolerance, axis=-1) & np.all(linear <= 1.0 + tolerance, axis=-1)
 
     elif target == "display_p3":
-        from quanta_color.spaces import SRGB_TO_XYZ, XYZ_TO_P3, srgb_to_linear
+        from build_color.spaces import SRGB_TO_XYZ, XYZ_TO_P3, srgb_to_linear
 
         linear = srgb_to_linear(pixels)
         xyz = (SRGB_TO_XYZ @ linear.T).T
@@ -131,7 +131,7 @@ def gamut_coverage(
         in_gamut = np.all(p3_linear >= -tolerance, axis=-1) & np.all(p3_linear <= 1.0 + tolerance, axis=-1)
 
     elif target == "bt2020":
-        from quanta_color.spaces import SRGB_TO_XYZ, XYZ_TO_BT2020, srgb_to_linear
+        from build_color.spaces import SRGB_TO_XYZ, XYZ_TO_BT2020, srgb_to_linear
 
         linear = srgb_to_linear(pixels)
         xyz = (SRGB_TO_XYZ @ linear.T).T
@@ -164,13 +164,13 @@ def out_of_gamut_mask(
     tolerance = 0.001
 
     if target == "srgb":
-        from quanta_color.spaces import srgb_to_linear
+        from build_color.spaces import srgb_to_linear
 
         linear = srgb_to_linear(pixels)
         in_gamut = np.all(linear >= -tolerance, axis=-1) & np.all(linear <= 1.0 + tolerance, axis=-1)
 
     elif target == "display_p3":
-        from quanta_color.spaces import SRGB_TO_XYZ, XYZ_TO_P3, srgb_to_linear
+        from build_color.spaces import SRGB_TO_XYZ, XYZ_TO_P3, srgb_to_linear
 
         linear = srgb_to_linear(pixels)
         xyz = (SRGB_TO_XYZ @ linear.T).T
@@ -178,7 +178,7 @@ def out_of_gamut_mask(
         in_gamut = np.all(p3_linear >= -tolerance, axis=-1) & np.all(p3_linear <= 1.0 + tolerance, axis=-1)
 
     elif target == "bt2020":
-        from quanta_color.spaces import SRGB_TO_XYZ, XYZ_TO_BT2020, srgb_to_linear
+        from build_color.spaces import SRGB_TO_XYZ, XYZ_TO_BT2020, srgb_to_linear
 
         linear = srgb_to_linear(pixels)
         xyz = (SRGB_TO_XYZ @ linear.T).T
@@ -213,7 +213,7 @@ def dominant_colors(
     Returns:
         List of n sRGB (3,) arrays representing dominant colors.
     """
-    from quanta_color.spaces import oklab_to_srgb, srgb_to_oklab
+    from build_color.spaces import oklab_to_srgb, srgb_to_oklab
 
     image = np.asarray(image, dtype=np.float64)
     pixels = image.reshape(-1, 3)
@@ -300,7 +300,7 @@ def wcag_check(fg_rgb: np.ndarray, bg_rgb: np.ndarray) -> dict:
             AAA_normal: bool (ratio >= 7.0)
             AAA_large: bool (ratio >= 4.5)
     """
-    from quanta_color.spaces import luminance
+    from build_color.spaces import luminance
 
     fg_lum = float(luminance(np.asarray(fg_rgb, dtype=np.float64)))
     bg_lum = float(luminance(np.asarray(bg_rgb, dtype=np.float64)))
@@ -348,9 +348,9 @@ def cvd_problem_pairs(
             original_distance: float Oklab distance before simulation
             simulated_distance: float Oklab distance after simulation
     """
-    from quanta_color.blindness import simulate
-    from quanta_color.difference import delta_e_oklab
-    from quanta_color.spaces import srgb_to_oklab
+    from build_color.blindness import simulate
+    from build_color.difference import delta_e_oklab
+    from build_color.spaces import srgb_to_oklab
 
     # Threshold is given in approximate delta-E scale; convert to Oklab
     oklab_threshold = threshold * 0.01

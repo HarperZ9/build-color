@@ -17,8 +17,8 @@ from PyQt6.QtWidgets import (
     QWidget,
 )
 
-from quanta_color.gui.app import C, Card, Heading
-from quanta_color.gui.widgets.color_swatch import ColorSwatch
+from build_color.gui.app import C, Card, Heading
+from build_color.gui.widgets.color_swatch import ColorSwatch
 
 
 class PaletteStudioPage(QWidget):
@@ -205,7 +205,7 @@ class PaletteStudioPage(QWidget):
         base = np.array([self._base_r, self._base_g, self._base_b])
 
         try:
-            from quanta_color.harmony import generate
+            from build_color.harmony import generate
 
             colors = generate(base, self._current_scheme)
             self._palette_rgb = [
@@ -289,7 +289,7 @@ class PaletteStudioPage(QWidget):
                     try:
                         import numpy as np
 
-                        from quanta_color.blindness import simulate
+                        from build_color.blindness import simulate
 
                         srgb = np.array([r, g, b])
                         sim = simulate(srgb, deficiency, severity=1.0)
@@ -341,7 +341,7 @@ class PaletteStudioPage(QWidget):
     @staticmethod
     def _get_scheme_names() -> list:
         try:
-            from quanta_color.harmony import SCHEMES
+            from build_color.harmony import SCHEMES
 
             return list(SCHEMES.keys())
         except Exception:

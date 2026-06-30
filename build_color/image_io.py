@@ -27,7 +27,7 @@ def _require_pillow() -> None:
     """Raise a helpful error if Pillow is not installed."""
     if not _HAS_PILLOW:
         raise ImportError(
-            "Pillow is required for image I/O. Install it with: pip install Pillow  (or: pip install quanta-color[all])"
+            "Pillow is required for image I/O. Install it with: pip install Pillow  (or: pip install build-color[all])"
         )
 
 

@@ -1,6 +1,6 @@
 # Contributing
 
-Quanta Color is a public color-science package. Contributions should preserve
+Build Color is a public color-science package. Contributions should preserve
 numerical behavior, keep optional GUI dependencies optional, and include focused
 tests for color transforms, appearance models, tone mapping, gamut behavior, or
 LUT/ICC output.

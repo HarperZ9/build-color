@@ -305,7 +305,7 @@ def write_clf(lut: LUT3D, path: str | Path) -> None:
         attrib={
             "xmlns": ns,
             "compCLFversion": "3.0",
-            "id": lut.title or "quanta_color_lut",
+            "id": lut.title or "build_color_lut",
         },
     )
 

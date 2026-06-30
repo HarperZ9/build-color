@@ -3,7 +3,7 @@
 import numpy as np
 import pytest
 
-from quanta_color.tonemap import (
+from build_color.tonemap import (
     OPERATORS,
     aces_filmic,
     aces_hill,

@@ -1,21 +1,21 @@
-# AGENTS.md - Quanta Color
+# AGENTS.md - Build Color
 
 ## Scope
 
-This file applies to the `quanta-color` repository. Root workspace instructions
+This file applies to the `build-color` repository. Root workspace instructions
 still apply; this repo is a public Python color-science library and a dependency
 surface for Calibrate Pro.
 
 ## Product Boundary
 
-Quanta Color is a reusable color-science package. Keep the public repo focused
+Build Color is a reusable color-science package. Keep the public repo focused
 on deterministic color transforms, color appearance models, tone mapping,
 spectral utilities, gamut mapping, LUT/ICC helpers, CLI behavior, and optional
 GUI workbench surfaces.
 
 Publishable surfaces:
 
-- `quanta_color/` - package code.
+- `build_color/` - package code.
 - `tests/` - regression coverage for spaces, adaptation, tone mapping,
   spectral math, gamut, harmony, difference metrics, CVD simulation, and LUT IO.
 - `README.md`, `ROADMAP.md`, `CHANGELOG.md`, `docs/`, and `pyproject.toml` -
