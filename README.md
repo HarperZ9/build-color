@@ -1,14 +1,14 @@
-# Quanta Color
+# Build Color
 
 > Python color-science workbench for perceptual spaces, HDR tone mapping, color appearance models, Delta E metrics, chromatic adaptation, spectral utilities, and ICC profile generation.
 
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![python](https://img.shields.io/badge/python-3.10%2B-blue.svg)
 ![version](https://img.shields.io/badge/version-1.0.1-informational.svg)
-[![CI](https://github.com/HarperZ9/quanta-color/actions/workflows/ci.yml/badge.svg)](https://github.com/HarperZ9/quanta-color/actions/workflows/ci.yml)
+[![CI](https://github.com/HarperZ9/build-color/actions/workflows/ci.yml/badge.svg)](https://github.com/HarperZ9/build-color/actions/workflows/ci.yml)
 [![part of: Quanta apps](https://img.shields.io/badge/part_of-Quanta_apps-c0468a.svg)](https://github.com/HarperZ9/quanta-universe)
 
-Quanta Color is a Python color-science workbench for people who need more than
+Build Color is a Python color-science workbench for people who need more than
 hex conversion. It covers perceptual spaces, HDR tone mapping, color appearance
 models, Delta E metrics, chromatic adaptation, spectral utilities, ICC profile
 generation, and an optional GUI.
@@ -17,18 +17,18 @@ generation, and an optional GUI.
 
 ```bash
 pip install ".[all]"
-quanta-color
+build-color
 ```
 
 Launch the GUI, or use the CLI:
 
 ```bash
-quanta-color info ff6030
-quanta-color convert ff6030 --to oklab
-quanta-color difference ff0000 00ff00 --metric all
-quanta-color harmony ff6030 --scheme triadic
-quanta-color spectrum --temp 6500
-quanta-color icc --gamma 2.2 --output display.icc
+build-color info ff6030
+build-color convert ff6030 --to oklab
+build-color difference ff0000 00ff00 --metric all
+build-color harmony ff6030 --scheme triadic
+build-color spectrum --temp 6500
+build-color icc --gamma 2.2 --output display.icc
 ```
 
 ## Features
@@ -69,22 +69,22 @@ Interactive workbench with 5 tools:
 - **CVD Simulator** - See how colors appear to color-blind viewers
 
 ```bash
-quanta-color gui
+build-color gui
 ```
 
 ## CLI Commands
 
 | Command | Description |
 |---------|-------------|
-| `quanta-color` | Launch GUI (default) |
-| `quanta-color info <color>` | Show color in all spaces + metadata |
-| `quanta-color convert <color> --to <space>` | Convert between color spaces |
-| `quanta-color difference <c1> <c2>` | Compute color difference |
-| `quanta-color harmony <color> --scheme <type>` | Generate palette |
-| `quanta-color adapt <xyz> --from D65 --to D50` | Chromatic adaptation |
-| `quanta-color spectrum --temp <K>` | Blackbody spectral data |
-| `quanta-color icc --gamma 2.2` | Create ICC profile |
-| `quanta-color gui` | Launch GUI workbench |
+| `build-color` | Launch GUI (default) |
+| `build-color info <color>` | Show color in all spaces + metadata |
+| `build-color convert <color> --to <space>` | Convert between color spaces |
+| `build-color difference <c1> <c2>` | Compute color difference |
+| `build-color harmony <color> --scheme <type>` | Generate palette |
+| `build-color adapt <xyz> --from D65 --to D50` | Chromatic adaptation |
+| `build-color spectrum --temp <K>` | Blackbody spectral data |
+| `build-color icc --gamma 2.2` | Create ICC profile |
+| `build-color gui` | Launch GUI workbench |
 
 ## Installation
 
@@ -97,11 +97,11 @@ pip install .           # Core only (numpy)
 
 ```python
 import numpy as np
-from quanta_color.spaces import srgb_to_oklab, oklab_to_srgb
-from quanta_color.tonemap import aces_filmic, pq_eotf
-from quanta_color.difference import delta_e_2000
-from quanta_color.adaptation import adapt, ILLUMINANTS
-from quanta_color.appearance import ciecam02_forward, ViewingConditions
+from build_color.spaces import srgb_to_oklab, oklab_to_srgb
+from build_color.tonemap import aces_filmic, pq_eotf
+from build_color.difference import delta_e_2000
+from build_color.adaptation import adapt, ILLUMINANTS
+from build_color.appearance import ciecam02_forward, ViewingConditions
 
 # Color space conversion
 oklab = srgb_to_oklab(np.array([0.8, 0.2, 0.1]))
@@ -130,7 +130,7 @@ print(f"J={appearance.J:.1f}, C={appearance.C:.1f}, h={appearance.h:.0f}")
 ## Architecture
 
 ```
-quanta_color/
+build_color/
   spaces.py       15+ color space conversions
   tonemap.py      12 tone mapping operators + PQ/HLG
   appearance.py   CIECAM02, CAM16, CAM16-UCS

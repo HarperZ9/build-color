@@ -17,8 +17,8 @@ from PyQt6.QtWidgets import (
     QWidget,
 )
 
-from quanta_color.gui.app import C, Card, Heading
-from quanta_color.gui.widgets.color_swatch import ColorSwatch
+from build_color.gui.app import C, Card, Heading
+from build_color.gui.widgets.color_swatch import ColorSwatch
 
 # CSS named colors for nearest-name fallback
 _CSS_COLORS = {
@@ -88,7 +88,7 @@ _CSS_COLORS = {
 def _nearest_css_name(r: int, g: int, b: int) -> str:
     """Find the closest CSS color name by Euclidean distance."""
     try:
-        from quanta_color.naming import nearest_css_name
+        from build_color.naming import nearest_css_name
 
         return nearest_css_name(r, g, b)
     except Exception:
@@ -407,7 +407,7 @@ class ColorInspectorPage(QWidget):
         try:
             import numpy as np
 
-            from quanta_color import spaces
+            from build_color import spaces
 
             srgb = np.array([r, g, b])
 
@@ -442,7 +442,7 @@ class ColorInspectorPage(QWidget):
         try:
             import numpy as np
 
-            from quanta_color import difference, spaces
+            from build_color import difference, spaces
 
             srgb = np.array([r, g, b])
             xyz = spaces.srgb_to_xyz(srgb)
@@ -495,7 +495,7 @@ class ColorInspectorPage(QWidget):
         try:
             import numpy as np
 
-            from quanta_color.blindness import simulate
+            from build_color.blindness import simulate
 
             srgb = np.array([r, g, b])
             for label, deficiency in [
@@ -527,7 +527,7 @@ class ColorInspectorPage(QWidget):
         try:
             import numpy as np
 
-            from quanta_color import difference, spaces
+            from build_color import difference, spaces
 
             srgb1 = np.array([self._r / 255.0, self._g / 255.0, self._b / 255.0])
             srgb2 = np.array([rf2, gf2, bf2])

@@ -3,7 +3,7 @@
 import numpy as np
 import pytest
 
-from quanta_color.harmony import (
+from build_color.harmony import (
     SCHEMES,
     analogous,
     complementary,
@@ -178,7 +178,7 @@ class TestSchemeProperties:
     def test_monochromatic_varies_lightness(self):
         """Monochromatic should produce colors of varying lightness."""
         result = monochromatic(BASE_RED, count=5)
-        from quanta_color.spaces import srgb_to_oklab
+        from build_color.spaces import srgb_to_oklab
 
         lightnesses = [srgb_to_oklab(c)[0] for c in result]
         # Lightness values should span a range

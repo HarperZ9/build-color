@@ -6,7 +6,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from quanta_color.lut_io import (
+from build_color.lut_io import (
     LUT1D,
     LUT3D,
     apply_lut,

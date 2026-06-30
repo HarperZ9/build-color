@@ -1,5 +1,5 @@
 """
-Quanta Color - Professional Color Science Library
+Build Color - Professional Color Science Library
 
 Comprehensive color science toolkit for display calibration, HDR processing,
 color grading, and image processing.
@@ -15,7 +15,7 @@ Modules:
     spectral    - Spectral rendering (Planck, daylight, CIE CMFs)
     harmony     - Color harmony generation (complementary, triadic, analogous)
     hdr         - HDR metadata and processing (PQ, HLG, BT.2390, BT.2446)
-    gui         - PyQt6 interactive workbench (launch with quanta_color.gui.launch())
+    gui         - PyQt6 interactive workbench (launch with build_color.gui.launch())
 """
 
 __version__ = "1.0.0"

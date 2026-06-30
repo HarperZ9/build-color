@@ -18,8 +18,8 @@ from PyQt6.QtWidgets import (
     QWidget,
 )
 
-from quanta_color.gui.app import C, Card, Heading
-from quanta_color.gui.widgets.color_swatch import ColorSwatch
+from build_color.gui.app import C, Card, Heading
+from build_color.gui.widgets.color_swatch import ColorSwatch
 
 
 class ImageAnalyzerPage(QWidget):

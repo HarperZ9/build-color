@@ -1,16 +1,16 @@
 """
-Quanta Color CLI
+Build Color CLI
 
 Command-line interface for color science operations.
 
 Usage:
-    quanta-color convert ff8030 --to oklab
-    quanta-color difference ff0000 00ff00 --metric ciede2000
-    quanta-color harmony ff6600 --scheme triadic
-    quanta-color adapt 0.95,1.0,1.09 --from D65 --to D50
-    quanta-color info ff8030
-    quanta-color spectrum --temp 6500
-    quanta-color icc --gamma 2.2 --name "My Display" --output display.icc
+    build-color convert ff8030 --to oklab
+    build-color difference ff0000 00ff00 --metric ciede2000
+    build-color harmony ff6600 --scheme triadic
+    build-color adapt 0.95,1.0,1.09 --from D65 --to D50
+    build-color info ff8030
+    build-color spectrum --temp 6500
+    build-color icc --gamma 2.2 --name "My Display" --output display.icc
 """
 
 import argparse
@@ -57,7 +57,7 @@ def _format_color(arr: np.ndarray, space: str = "srgb") -> str:
 
 def cmd_convert(args):
     """Convert a color between spaces."""
-    from quanta_color import spaces
+    from build_color import spaces
 
     color = _parse_color(args.color)
     src = args.source.lower()
@@ -100,7 +100,7 @@ def cmd_convert(args):
 
 def cmd_difference(args):
     """Compute color difference."""
-    from quanta_color import difference, spaces
+    from build_color import difference, spaces
 
     c1 = _parse_color(args.color1)
     c2 = _parse_color(args.color2)
@@ -134,7 +134,7 @@ def cmd_difference(args):
 
 def cmd_harmony(args):
     """Generate color harmony palette."""
-    from quanta_color.harmony import generate
+    from build_color.harmony import generate
 
     color = _parse_color(args.color)
     palette = generate(color, args.scheme)
@@ -150,7 +150,7 @@ def cmd_harmony(args):
 
 def cmd_adapt(args):
     """Chromatic adaptation."""
-    from quanta_color.adaptation import ILLUMINANTS, adapt
+    from build_color.adaptation import ILLUMINANTS, adapt
 
     color = np.array([float(x) for x in args.color.split(",")])
 
@@ -172,7 +172,7 @@ def cmd_adapt(args):
 
 def cmd_info(args):
     """Show comprehensive color info."""
-    from quanta_color import spaces
+    from build_color import spaces
 
     color = _parse_color(args.color)
     xyz = spaces.srgb_to_xyz(color)
@@ -198,13 +198,13 @@ def cmd_info(args):
     print(f"  Luminance: {lum:.4f}")
 
     # Dominant wavelength
-    from quanta_color.spectral import dominant_wavelength
+    from build_color.spectral import dominant_wavelength
 
     dom = dominant_wavelength(xyY[0], xyY[1])
     print(f"  Dominant wavelength: {dom:.0f} nm")
 
     # WCAG contrast vs white and black
-    from quanta_color.difference import contrast_ratio
+    from build_color.difference import contrast_ratio
 
     cr_white = contrast_ratio(lum, 1.0)
     cr_black = contrast_ratio(lum, 0.0)
@@ -216,7 +216,7 @@ def cmd_info(args):
 
 def cmd_spectrum(args):
     """Generate spectral data."""
-    from quanta_color.spectral import CMF_WAVELENGTHS, blackbody_chromaticity, planck_radiation
+    from build_color.spectral import CMF_WAVELENGTHS, blackbody_chromaticity, planck_radiation
 
     T = args.temp
     wavelengths = CMF_WAVELENGTHS
@@ -244,7 +244,7 @@ def cmd_spectrum(args):
 
 def cmd_icc(args):
     """Create an ICC profile."""
-    from quanta_color.icc import create_display_profile
+    from build_color.icc import create_display_profile
 
     profile = create_display_profile(
         gamma=args.gamma,
@@ -259,10 +259,10 @@ def cmd_icc(args):
 
 def main():
     parser = argparse.ArgumentParser(
-        prog="quanta-color",
-        description="Quanta Color - Professional Color Science CLI",
+        prog="build-color",
+        description="Build Color - Professional Color Science CLI",
     )
-    parser.add_argument("--version", action="version", version=f"Quanta Color v{__version__}")
+    parser.add_argument("--version", action="version", version=f"Build Color v{__version__}")
 
     sub = parser.add_subparsers(dest="command", help="Available commands")
 
@@ -306,7 +306,7 @@ def main():
     # icc
     p = sub.add_parser("icc", help="Create ICC profile")
     p.add_argument("--gamma", type=float, default=2.2, help="Display gamma")
-    p.add_argument("--name", default="Quanta Color Display Profile", help="Profile name")
+    p.add_argument("--name", default="Build Color Display Profile", help="Profile name")
     p.add_argument("--output", "-o", default="display.icc", help="Output file")
 
     # gui
@@ -317,7 +317,7 @@ def main():
     if not args.command:
         # Default: launch GUI
         try:
-            from quanta_color.gui import launch
+            from build_color.gui import launch
 
             return launch()
         except ImportError:
@@ -325,7 +325,7 @@ def main():
             return 0
 
     if args.command == "gui":
-        from quanta_color.gui import launch
+        from build_color.gui import launch
 
         return launch()
 

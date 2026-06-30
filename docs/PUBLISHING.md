@@ -1,4 +1,4 @@
-# Publishing quanta-color to PyPI
+# Publishing build-color to PyPI
 
 ## Prerequisites
 - Python 3.10+
@@ -12,37 +12,37 @@
 ## Step 2: Generate API Token
 1. Go to https://pypi.org/manage/account/token/
 2. Click "Add API token"
-3. Name: "quanta-color"
+3. Name: "build-color"
 4. Scope: "Entire account" (or project-specific after first upload)
 5. Copy the token (starts with `pypi-`)
 
 ## Step 3: Build Package
 ```bash
-cd quanta-color
+cd build-color
 python -m build
 ```
 
 This creates:
-- `dist/quanta_color-1.0.0.tar.gz` (source)
-- `dist/quanta_color-1.0.0-py3-none-any.whl` (wheel)
+- `dist/build_color-1.0.0.tar.gz` (source)
+- `dist/build_color-1.0.0-py3-none-any.whl` (wheel)
 
 ## Step 4: Verify
 ```bash
-python -m twine check dist/quanta_color-1.0.0*
+python -m twine check dist/build_color-1.0.0*
 ```
 
 ## Step 5: Upload
 ```bash
-python -m twine upload dist/quanta_color-1.0.0* \
+python -m twine upload dist/build_color-1.0.0* \
     --username __token__ \
     --password pypi-YOUR-TOKEN-HERE
 ```
 
 ## Step 6: Verify Installation
 ```bash
-pip install quanta-color
-python -c "from quanta_color.spaces import srgb_to_xyz; print(srgb_to_xyz(0.5, 0.3, 0.1))"
+pip install build-color
+python -c "from build_color.spaces import srgb_to_xyz; print(srgb_to_xyz(0.5, 0.3, 0.1))"
 ```
 
 ## After First Upload
-Users can install with: `pip install quanta-color`
+Users can install with: `pip install build-color`

@@ -48,7 +48,7 @@ def oklab_chroma_reduce(srgb: np.ndarray, target_gamut: str = "srgb") -> np.ndar
     Reduce chroma in Oklab space until color is in gamut.
     CSS Color Module Level 4 approach.
     """
-    from quanta_color.spaces import (
+    from build_color.spaces import (
         srgb_to_oklab,
     )
 
@@ -69,7 +69,7 @@ def oklab_chroma_reduce(srgb: np.ndarray, target_gamut: str = "srgb") -> np.ndar
 
 def _reduce_single(oklab: np.ndarray) -> np.ndarray:
     """Reduce chroma for a single Oklab color."""
-    from quanta_color.spaces import (
+    from build_color.spaces import (
         linear_to_srgb,
         oklab_to_linear_srgb,
         oklab_to_oklch,

@@ -3,7 +3,7 @@
 import numpy as np
 import pytest
 
-from quanta_color.difference import (
+from build_color.difference import (
     compare_all,
     contrast_ratio,
     delta_e_76,

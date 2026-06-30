@@ -3,7 +3,7 @@ requires = ["setuptools>=77.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "quanta-color"
+name = "build-color"
 version = "1.0.1"
 description = "Python color-science workbench for HDR tone mapping, appearance models, Delta E, spectral, ICC, and LUT workflows"
 readme = "README.md"
@@ -22,19 +22,19 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/HarperZ9/quanta-color"
-Repository = "https://github.com/HarperZ9/quanta-color"
-Issues = "https://github.com/HarperZ9/quanta-color/issues"
+Homepage = "https://github.com/HarperZ9/build-color"
+Repository = "https://github.com/HarperZ9/build-color"
+Issues = "https://github.com/HarperZ9/build-color/issues"
 
 [project.scripts]
-quanta-color = "quanta_color.cli:main"
+build-color = "build_color.cli:main"
 
 [project.optional-dependencies]
 gui = ["PyQt6>=6.5,<7", "quanta-ui>=1.0.0"]
 all = ["scipy>=1.10,<2", "Pillow>=10.0,<11", "PyQt6>=6.5,<7"]
 
 [tool.setuptools.packages.find]
-include = ["quanta_color*"]
+include = ["build_color*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

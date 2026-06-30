@@ -1,7 +1,7 @@
-# Quanta Color — Usage Guide
+# Build Color — Usage Guide
 
-Quanta Color is a Python color-science library with a command-line interface
-(`quanta-color`) and an optional PyQt6 GUI. This guide covers installation, the
+Build Color is a Python color-science library with a command-line interface
+(`build-color`) and an optional PyQt6 GUI. This guide covers installation, the
 CLI commands, the Python API, and worked examples with their actual output.
 
 All command and API examples below were run against the package in this
@@ -21,32 +21,32 @@ pip install ".[all]"
 pip install ".[gui]"
 ```
 
-This installs the `quanta-color` console script (entry point
-`quanta_color.cli:main`). Requires Python 3.10+.
+This installs the `build-color` console script (entry point
+`build_color.cli:main`). Requires Python 3.10+.
 
 Without installing, you can run the CLI directly from a checkout:
 
 ```bash
-python -m quanta_color.cli <command> ...
+python -m build_color.cli <command> ...
 ```
 
 ## CLI
 
 ```text
-quanta-color [--version] <command> [options]
+build-color [--version] <command> [options]
 ```
 
 | Command | Description |
 |---------|-------------|
-| `quanta-color` | Launch the GUI (default when no command is given) |
-| `quanta-color gui` | Launch the GUI workbench |
-| `quanta-color info <color>` | Show a color across all spaces plus metadata |
-| `quanta-color convert <color> --to <space>` | Convert between color spaces |
-| `quanta-color difference <c1> <c2> [--metric <m>]` | Color difference (Delta E) |
-| `quanta-color harmony <color> [--scheme <s>]` | Generate a harmony palette |
-| `quanta-color adapt <xyz> [--from <ill>] [--to <ill>] [--method <m>]` | Chromatic adaptation |
-| `quanta-color spectrum [--temp <K>] [--output <csv>]` | Blackbody spectral data |
-| `quanta-color icc [--gamma <g>] [--name <n>] [--output <icc>]` | Create an ICC v4 profile |
+| `build-color` | Launch the GUI (default when no command is given) |
+| `build-color gui` | Launch the GUI workbench |
+| `build-color info <color>` | Show a color across all spaces plus metadata |
+| `build-color convert <color> --to <space>` | Convert between color spaces |
+| `build-color difference <c1> <c2> [--metric <m>]` | Color difference (Delta E) |
+| `build-color harmony <color> [--scheme <s>]` | Generate a harmony palette |
+| `build-color adapt <xyz> [--from <ill>] [--to <ill>] [--method <m>]` | Chromatic adaptation |
+| `build-color spectrum [--temp <K>] [--output <csv>]` | Blackbody spectral data |
+| `build-color icc [--gamma <g>] [--name <n>] [--output <icc>]` | Create an ICC v4 profile |
 
 Color arguments accept hex (`ff6030` or `#ff6030`), comma-separated floats
 (`0.8,0.2,0.1`), or 0-255 triples (`200,50,25`). For `adapt`, the color
@@ -58,14 +58,14 @@ Option vocabularies (from the source):
 - `difference --metric`: `cie76`, `cie94`, `ciede2000`, `cmc`, `hyab`, `all` (default `ciede2000`)
 - `harmony --scheme`: `complementary`, `split_complementary`, `triadic`, `tetradic`, `analogous`, `monochromatic` (default `triadic`)
 - `adapt --from` / `--to` (illuminants): `D50`, `D55`, `D65`, `D75`, `A`, `F2`, `F11`
-- `adapt --method`: `bradford` (default) and the other methods exposed by `quanta_color.adaptation`
+- `adapt --method`: `bradford` (default) and the other methods exposed by `build_color.adaptation`
 
 ## Worked examples (CLI)
 
 ### 1. Inspect a color
 
 ```bash
-quanta-color info ff6030
+build-color info ff6030
 ```
 
 ```text
@@ -88,7 +88,7 @@ Color: #ff6030
 ### 2. Convert sRGB to Oklab
 
 ```bash
-quanta-color convert ff6030 --to oklab
+build-color convert ff6030 --to oklab
 ```
 
 ```text
@@ -99,7 +99,7 @@ srgb (1.0000, 0.3765, 0.1882)  #ff6030
 ### 3. Compare two colors across all Delta E metrics
 
 ```bash
-quanta-color difference ff0000 00ff00 --metric all
+build-color difference ff0000 00ff00 --metric all
 ```
 
 ```text
@@ -116,7 +116,7 @@ Color 2: (0.0000, 1.0000, 0.0000)  #00ff00
 ### 4. Generate a triadic palette
 
 ```bash
-quanta-color harmony ff6030 --scheme triadic
+build-color harmony ff6030 --scheme triadic
 ```
 
 ```text
@@ -131,7 +131,7 @@ Scheme: triadic
 ### 5. Chromatic adaptation (D65 -> D50)
 
 ```bash
-quanta-color adapt 0.95047,1.0,1.08883 --from D65 --to D50 --method bradford
+build-color adapt 0.95047,1.0,1.08883 --from D65 --to D50 --method bradford
 ```
 
 ```text
@@ -144,11 +144,11 @@ Method: bradford
 
 ```python
 import numpy as np
-from quanta_color.spaces import srgb_to_oklab, oklab_to_srgb
-from quanta_color.tonemap import aces_filmic, pq_eotf
-from quanta_color.difference import delta_e_2000
-from quanta_color.adaptation import adapt, ILLUMINANTS
-from quanta_color.appearance import ciecam02_forward, ViewingConditions
+from build_color.spaces import srgb_to_oklab, oklab_to_srgb
+from build_color.tonemap import aces_filmic, pq_eotf
+from build_color.difference import delta_e_2000
+from build_color.adaptation import adapt, ILLUMINANTS
+from build_color.appearance import ciecam02_forward, ViewingConditions
 
 # Color-space conversion
 oklab = srgb_to_oklab(np.array([0.8, 0.2, 0.1]))
@@ -186,7 +186,7 @@ print(f"J={appearance.J:.1f}, C={appearance.C:.1f}, h={appearance.h:.0f}")
 ### Generate an ICC display profile
 
 ```python
-from quanta_color.icc import create_display_profile
+from build_color.icc import create_display_profile
 
 profile = create_display_profile(gamma=2.2, name="My Display")
 profile.save("display.icc")
@@ -199,12 +199,12 @@ point; override `red_xy`, `green_xy`, `blue_xy`, and `white_xy` for other gamuts
 ## GUI
 
 ```bash
-quanta-color gui
+build-color gui
 ```
 
 The GUI requires the `gui` (or `all`) extra so that PyQt6 is available. It
 provides a Dashboard, Color Inspector, Palette Studio, LUT Workshop, and an
-Image Analyzer (see `quanta_color/gui/pages/`).
+Image Analyzer (see `build_color/gui/pages/`).
 
 ## See also
 

@@ -11,7 +11,7 @@ Types:
     achromatopsia - Complete color blindness (very rare)
 
 Usage:
-    from quanta_color.blindness import simulate
+    from build_color.blindness import simulate
     simulated = simulate(srgb_image, "deuteranopia", severity=1.0)
 """
 
