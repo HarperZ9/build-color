@@ -1,5 +1,5 @@
 """
-Quanta Color - Main Application
+Build Color - Main Application
 
 Professional color science workbench with sidebar navigation,
 page transitions, and the shared Calibrate Pro visual framework.
@@ -43,9 +43,9 @@ from PyQt6.QtWidgets import (
 from quanta_ui.theme import STYLE, C
 from quanta_ui.widgets import Heading, Sidebar, ToastNotification
 
-APP_NAME = "Quanta Color"
+APP_NAME = "Build Color"
 APP_VERSION = "1.0.0"
-APP_ORG = "Quanta Universe"
+APP_ORG = "Build Universe"
 
 
 # =============================================================================
@@ -156,7 +156,7 @@ PAGE_MENU_NAMES = [
 ]
 
 
-class QuantaColorWindow(QMainWindow):
+class BuildColorWindow(QMainWindow):
     """Main application window."""
 
     def __init__(self):
@@ -232,7 +232,7 @@ class QuantaColorWindow(QMainWindow):
 
         # Page 0: Dashboard
         try:
-            from quanta_color.gui.pages.dashboard import DashboardPage
+            from build_color.gui.pages.dashboard import DashboardPage
 
             self.stack.addWidget(DashboardPage())
         except (ImportError, AttributeError, TypeError) as e:
@@ -241,7 +241,7 @@ class QuantaColorWindow(QMainWindow):
 
         # Page 1: Image Analyzer
         try:
-            from quanta_color.gui.pages.image_analyzer import ImageAnalyzerPage
+            from build_color.gui.pages.image_analyzer import ImageAnalyzerPage
 
             self.stack.addWidget(ImageAnalyzerPage())
         except (ImportError, AttributeError, TypeError) as e:
@@ -250,7 +250,7 @@ class QuantaColorWindow(QMainWindow):
 
         # Page 2: Color Inspector
         try:
-            from quanta_color.gui.pages.color_inspector import ColorInspectorPage
+            from build_color.gui.pages.color_inspector import ColorInspectorPage
 
             self.stack.addWidget(ColorInspectorPage())
         except (ImportError, AttributeError, TypeError) as e:
@@ -259,7 +259,7 @@ class QuantaColorWindow(QMainWindow):
 
         # Page 3: LUT Workshop
         try:
-            from quanta_color.gui.pages.lut_workshop import LUTWorkshopPage
+            from build_color.gui.pages.lut_workshop import LUTWorkshopPage
 
             self.stack.addWidget(LUTWorkshopPage())
         except (ImportError, AttributeError, TypeError) as e:
@@ -268,7 +268,7 @@ class QuantaColorWindow(QMainWindow):
 
         # Page 4: Palette Studio
         try:
-            from quanta_color.gui.pages.palette_studio import PaletteStudioPage
+            from build_color.gui.pages.palette_studio import PaletteStudioPage
 
             self.stack.addWidget(PaletteStudioPage())
         except (ImportError, AttributeError, TypeError) as e:
@@ -277,7 +277,7 @@ class QuantaColorWindow(QMainWindow):
 
         # Page 5: Settings
         try:
-            from quanta_color.gui.pages.settings import SettingsPage
+            from build_color.gui.pages.settings import SettingsPage
 
             self.stack.addWidget(SettingsPage())
         except (ImportError, AttributeError, TypeError) as e:
@@ -381,6 +381,6 @@ class QuantaColorWindow(QMainWindow):
 # =============================================================================
 
 if __name__ == "__main__":
-    from quanta_color.gui import launch
+    from build_color.gui import launch
 
     sys.exit(launch())

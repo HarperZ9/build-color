@@ -23,7 +23,7 @@ Thumbs.db
 htmlcov/
 .coverage
 
-# Compiled QuantaLang
+# Compiled BuildLang
 *.obj
 
 # Executables

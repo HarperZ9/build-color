@@ -25,5 +25,5 @@ jobs:
           python -m twine check dist/*
       - uses: actions/upload-artifact@v5
         with:
-          name: quanta-color-dist
+          name: build-color-dist
           path: dist/*

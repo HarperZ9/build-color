@@ -18,14 +18,14 @@ import numpy as np
 
 def _rgb_to_oklch(rgb: np.ndarray) -> np.ndarray:
     """Quick sRGB -> Oklch for harmony calculations."""
-    from quanta_color.spaces import oklab_to_oklch, srgb_to_oklab
+    from build_color.spaces import oklab_to_oklch, srgb_to_oklab
 
     return oklab_to_oklch(srgb_to_oklab(rgb))
 
 
 def _oklch_to_rgb(oklch: np.ndarray) -> np.ndarray:
     """Quick Oklch -> sRGB for harmony calculations."""
-    from quanta_color.spaces import oklab_to_srgb, oklch_to_oklab
+    from build_color.spaces import oklab_to_srgb, oklch_to_oklab
 
     return oklab_to_srgb(oklch_to_oklab(oklch))
 

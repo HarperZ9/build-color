@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from quanta_color.naming import (
+from build_color.naming import (
     CSS_COLORS,
     all_css_colors,
     color_description,

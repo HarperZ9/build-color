@@ -1,11 +1,11 @@
 """
-Quanta Color — best-effort demo.
+Build Color — best-effort demo.
 
 Best-effort demo — not runtime-verified by author.
 
 Exercises the real public surface of the package:
   * the Python API (spaces, tonemap, difference, adaptation, appearance, harmony)
-  * the `quanta-color` CLI (via `python -m quanta_color.cli`)
+  * the `build-color` CLI (via `python -m build_color.cli`)
 
 Run from the repository root after installing the package (`pip install .`)
 or directly from a checkout:
@@ -21,12 +21,12 @@ import sys
 
 import numpy as np
 
-from quanta_color.adaptation import ILLUMINANTS, adapt
-from quanta_color.appearance import ViewingConditions, ciecam02_forward
-from quanta_color.difference import delta_e_2000
-from quanta_color.harmony import generate
-from quanta_color.spaces import srgb_to_oklab
-from quanta_color.tonemap import aces_filmic
+from build_color.adaptation import ILLUMINANTS, adapt
+from build_color.appearance import ViewingConditions, ciecam02_forward
+from build_color.difference import delta_e_2000
+from build_color.harmony import generate
+from build_color.spaces import srgb_to_oklab
+from build_color.tonemap import aces_filmic
 
 
 def api_demo() -> None:
@@ -63,7 +63,7 @@ def api_demo() -> None:
 
 
 def cli_demo() -> None:
-    print("\n== CLI (python -m quanta_color.cli) ==")
+    print("\n== CLI (python -m build_color.cli) ==")
     commands = [
         ["info", "ff6030"],
         ["convert", "ff6030", "--to", "oklab"],
@@ -71,9 +71,9 @@ def cli_demo() -> None:
         ["harmony", "ff6030", "--scheme", "triadic"],
     ]
     for cmd in commands:
-        print(f"\n$ quanta-color {' '.join(cmd)}")
+        print(f"\n$ build-color {' '.join(cmd)}")
         result = subprocess.run(
-            [sys.executable, "-m", "quanta_color.cli", *cmd],
+            [sys.executable, "-m", "build_color.cli", *cmd],
             capture_output=True,
             text=True,
         )

@@ -19,7 +19,7 @@ from PyQt6.QtWidgets import (
     QWidget,
 )
 
-from quanta_color.gui.app import C, Card, Heading
+from build_color.gui.app import C, Card, Heading
 
 
 class SettingsPage(QWidget):
@@ -111,10 +111,10 @@ class SettingsPage(QWidget):
         about_lay.addWidget(Heading("About", level=2))
 
         about_items = [
-            ("Quanta Color v1.0.0", f"font-size: 16px; font-weight: 600; color: {C.TEXT};"),
+            ("Build Color v1.0.0", f"font-size: 16px; font-weight: 600; color: {C.TEXT};"),
             ("Professional color science for Python", f"font-size: 13px; color: {C.TEXT2}; margin-bottom: 8px;"),
             ("Author: Zain Harper", f"font-size: 12px; color: {C.TEXT2};"),
-            ("\u00a9 2026 Quanta Universe. All rights reserved.", f"font-size: 11px; color: {C.TEXT3};"),
+            ("\u00a9 2026 Build Universe. All rights reserved.", f"font-size: 11px; color: {C.TEXT3};"),
         ]
         for text, style in about_items:
             lbl = QLabel(text)
@@ -213,7 +213,7 @@ class SettingsPage(QWidget):
     @staticmethod
     def _check_module(name: str) -> bool:
         try:
-            __import__(f"quanta_color.{name}")
+            __import__(f"build_color.{name}")
             return True
         except Exception:
             return False

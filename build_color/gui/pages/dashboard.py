@@ -17,7 +17,7 @@ from PyQt6.QtWidgets import (
     QWidget,
 )
 
-from quanta_color.gui.app import C, Card, Heading, Stat
+from build_color.gui.app import C, Card, Heading, Stat
 
 
 class DashboardPage(QWidget):
@@ -171,7 +171,7 @@ class DashboardPage(QWidget):
         ]
         for name in module_names:
             try:
-                __import__(f"quanta_color.{name}")
+                __import__(f"build_color.{name}")
                 count += 1
             except Exception:
                 pass

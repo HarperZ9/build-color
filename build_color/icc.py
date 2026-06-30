@@ -5,7 +5,7 @@ Create valid ICC v4 display profiles from primaries and transfer curves.
 Used for color management in Photoshop, Lightroom, Windows, macOS.
 
 Usage:
-    from quanta_color.icc import create_display_profile
+    from build_color.icc import create_display_profile
     profile = create_display_profile(
         red_xy=(0.64, 0.33), green_xy=(0.30, 0.60), blue_xy=(0.15, 0.06),
         white_xy=(0.3127, 0.3290), gamma=2.2, name="My Display"
@@ -44,9 +44,9 @@ def create_display_profile(
     blue_xy: tuple[float, float] = (0.1500, 0.0600),
     white_xy: tuple[float, float] = (0.3127, 0.3290),
     gamma: float = 2.2,
-    name: str = "Quanta Color Display Profile",
+    name: str = "Build Color Display Profile",
     description: str = "",
-    copyright: str = "Quanta Universe",
+    copyright: str = "Build Universe",
     trc_points: int = 256,
 ) -> ICCProfile:
     """
@@ -108,7 +108,7 @@ def create_display_profile(
     tags["bTRC"] = _make_curve_tag(trc)
 
     # Chromatic adaptation (D65 -> D50, Bradford)
-    from quanta_color.adaptation import ILLUMINANTS, get_adaptation_matrix
+    from build_color.adaptation import ILLUMINANTS, get_adaptation_matrix
 
     chad = get_adaptation_matrix(ILLUMINANTS["D65"], ILLUMINANTS["D50"], "bradford")
     tags["chad"] = _make_s15f16_matrix_tag(chad)
@@ -244,7 +244,7 @@ def _assemble_profile(tags: dict, description: str) -> bytes:
 
     # Fill header
     struct.pack_into(">I", header, 0, profile_size)  # Profile size
-    header[4:8] = b"QNTC"  # Preferred CMM (Quanta Color)
+    header[4:8] = b"QNTC"  # Preferred CMM (Build Color)
     struct.pack_into(">I", header, 8, 0x04400000)  # Version 4.4
     header[12:16] = b"mntr"  # Device class: monitor
     header[16:20] = b"RGB "  # Color space: RGB

@@ -3,7 +3,7 @@
 import numpy as np
 import pytest
 
-from quanta_color.blindness import (
+from build_color.blindness import (
     DEFICIENCY_TYPES,
     error_map,
     simulate,
