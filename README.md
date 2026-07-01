@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/brand/build-color-hero.png" alt="Build Color: Color Science Workbench">
+</p>
+
 # Build Color
 
 > Python color-science workbench for perceptual spaces, HDR tone mapping, color appearance models, Delta E metrics, chromatic adaptation, spectral utilities, and ICC profile generation.
@@ -6,7 +10,7 @@
 ![python](https://img.shields.io/badge/python-3.10%2B-blue.svg)
 ![version](https://img.shields.io/badge/version-1.0.1-informational.svg)
 [![CI](https://github.com/HarperZ9/build-color/actions/workflows/ci.yml/badge.svg)](https://github.com/HarperZ9/build-color/actions/workflows/ci.yml)
-[![part of: Quanta apps](https://img.shields.io/badge/part_of-Quanta_apps-c0468a.svg)](https://github.com/HarperZ9/quanta-universe)
+[![part of: Build apps](https://img.shields.io/badge/part_of-Build_apps-c0468a.svg)](https://github.com/HarperZ9/build-universe)
 
 Build Color is a Python color-science workbench for people who need more than
 hex conversion. It covers perceptual spaces, HDR tone mapping, color appearance
