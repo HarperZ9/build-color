@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "build-color"
-version = "1.0.1"
+version = "1.0.2"
 description = "Python color-science workbench for HDR tone mapping, appearance models, Delta E, spectral, ICC, and LUT workflows"
 readme = "README.md"
 license = { text = "FSL-1.1-MIT" }
