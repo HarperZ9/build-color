@@ -18,4 +18,4 @@ Modules:
     gui         - PyQt6 interactive workbench (launch with build_color.gui.launch())
 """
 
-__version__ = "1.0.0"
+__version__ = "1.0.2"

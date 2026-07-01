@@ -18,7 +18,7 @@ import sys
 
 import numpy as np
 
-__version__ = "1.0.0"
+__version__ = "1.0.2"
 
 
 def _parse_color(s: str) -> np.ndarray:
