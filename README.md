@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/brand/build-color-hero.png" alt="Build Color, a Python color-science workbench">
+  <img src=".github/assets/zentropy-banner.png" alt="Build Color, a Python color-science workbench">
 </p>
 <!-- Project mark: docs/brand/build-color-mark.svg -->
 
@@ -163,3 +163,7 @@ The source is source-available: you may read, run, modify, and build on it for
 any purpose other than a competing commercial use, which is reserved to the
 Licensor to fund continued development. Copyright (c) 2022-2026 Zain Dana Harper.
 All rights reserved. See [LICENSE](LICENSE).
+
+---
+
+**[Zentropy Labs](https://github.com/ZentropyLabs-ai)** · order out of entropy. An independent lab building evidence-first tools that leave a re-checkable artifact behind. Built by Zain Dana Harper in Seattle. The full workbench is at [Project Telos](https://harperz9.github.io).
