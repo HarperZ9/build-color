@@ -1,6 +1,4 @@
-<p align="center">
-  <img src=".github/assets/zentropy-banner.png" alt="Build Color, a Python color-science workbench">
-</p>
+![Build Color, a Python color-science workbench: convert, adapt, appear, map, measure.](docs/art/build-color-header.svg)
 <!-- Project mark: docs/brand/build-color-mark.svg -->
 
 # Build Color
@@ -20,6 +18,8 @@ Build Color is a Python color-science workbench for people who need more than
 hex conversion. It covers perceptual spaces, HDR tone mapping, color appearance
 models, Delta E metrics, chromatic adaptation, spectral utilities, ICC profile
 generation, and an optional GUI.
+
+![Eight stages of taking one color out of sRGB and back: sRGB in, linearize, to XYZ, perceptual, adapt, appearance, invert, and measure. A hex triple is decoded to eight bits a channel, the sRGB transfer curve is undone, and a single three by three matrix carrying the primaries as columns lands the color in XYZ. From there it reaches the perceptual spaces, Oklab and CIELAB and JzAzBz and ICtCp among twenty-six named conversions in all. Chromatic adaptation moves the white point using any of nine matrices across seven illuminants, and the appearance models, CIECAM02 and CAM16, add viewing conditions: a white point, an adapting luminance, a background and a surround. Then the steps that carry an inverse run backwards, CIECAM02 and Oklab among them, and the result is measured against where it started. Round tripping sRGB to Oklab and back over a twenty-six cubed grid never moves a channel more than four times ten to the minus fourteen, and adapting D65 to D50 and back returns within three units in the last place for all nine matrices. Three outcomes: the round trip holds, the color is out of gamut, or the input was never a color.](docs/art/round-trip.svg)
 
 ## Quick Start
 
@@ -49,6 +49,8 @@ ACES (Narkowicz + Hill), AgX (neutral/punchy/golden), Reinhard (simple + extende
 
 ### HDR Processing
 PQ (ST.2084) encode/decode, HLG (BT.2100) encode/decode, BT.2390 EETF tone mapping, BT.2446 HDR-to-SDR
+
+![Eight stages of taking scene light to a panel: scene light, encode, decode, check, tone map, gamut, display, and difference. Scene light is linear and unbounded, well above one. It is encoded with PQ, which covers ten thousand candela per square metre in a signal from zero to one, or with HLG over its own zero to one domain. Decoding returns the light that went in: PQ round trips to within three parts in ten to the thirteen relative across its full range, and HLG to within seven times ten to the minus sixteen absolute inside its domain. Tone mapping applies one of twelve operators, each a single call. Gamut mapping then clips, compresses, or reduces chroma in Oklab, and the result is re-encoded for the panel. Seven difference metrics grade what changed. Eleven of the twelve operators are monotone non-decreasing over the range tested, so a brighter sample never comes out darker than a dimmer one. The Gran Turismo curve is the exception and falls at the handoff between its toe and its shoulder. Three outcomes: displayable, compressed, or answered in absolute units.](docs/art/hdr-lane.svg)
 
 ### Color Appearance Models
 CIECAM02 forward/inverse (machine-epsilon roundtrip), CAM16, CAM16-UCS uniform color space, hue quadrature
@@ -152,6 +154,8 @@ build_color/
   cli.py          Command-line interface (8 commands)
   gui/            PyQt6 interactive workbench
 ```
+
+![A table of twelve rows: what the workbench holds, how many of it there are, and which module the number is read from. Twenty-six named conversions in spaces.py move a color between two spaces: sRGB, linear RGB, XYZ, xyY, CIELAB, LCH, Oklab, Oklch, JzAzBz, JzCzhz, ICtCp and HSV. Five RGB gamuts carry matrix pairs instead, sRGB and Display P3 and BT.2020 and Adobe RGB and ACEScg. Twelve tone mapping operators sit in tonemap.OPERATORS, of which three answer in absolute units and can exceed one: BT.2390, the knee, and extended Reinhard. Nine chromatic adaptation matrices adapt D65 to D50 and back within three units in the last place. Seven illuminants, seven difference metrics, four colour vision deficiency types and six harmony schemes. CIECAM02 forward then inverse over seven hundred and twenty-nine sRGB colors stays under three times ten to the minus fifteen, and sRGB to Oklab and back over a twenty-six cubed grid stays under four times ten to the minus fourteen. The CIE 1931 colour matching functions carry eighty-one samples from three hundred and eighty to seven hundred and eighty nanometres. One hundred and forty-eight CSS colors back the naming lookup.](docs/art/numbers-table.svg)
 
 See [USAGE.md](USAGE.md) for an install/build line, the full command and API
 reference, and worked examples with expected output.

@@ -10,6 +10,22 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
+  # The README drawings are rendered from docs/art/build-color.art.json, so they rot
+  # like any other derived file: a bound moves, nobody re-renders, and the picture
+  # describes something that stopped being true. This re-renders every drawing,
+  # compares bytes, and checks that each one fits the columns it is drawn in.
+  # Whether a drawing is TRUE of the code is a separate question, answered by
+  # tests/test_repo_art.py in the test job.
+  repo-art:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check the front-page artwork
+        run: python tools/check_repo_art.py
+
   lint:
     runs-on: ubuntu-latest
     steps:
