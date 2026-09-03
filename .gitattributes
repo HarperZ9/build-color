@@ -1,0 +1,4 @@
+# The README drawings are compared against freshly rendered bytes, so a
+# checkout that rewrote their line endings would fail the art gate.
+docs/art/*.svg text eol=lf
+docs/art/*.art.json text eol=lf

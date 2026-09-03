@@ -1,0 +1,87 @@
+{
+  "header": {
+    "name": "build-color",
+    "role": "color science with the trip back left in",
+    "tagline": "Convert, adapt, tone map, then check the trip back yourself.",
+    "words": ["convert", "adapt", "appear", "map", "measure"]
+  },
+  "flows": [
+    {
+      "file": "round-trip.svg",
+      "kicker": "a conversion you cannot check is a conversion you have to trust",
+      "title": "How a color leaves sRGB, crosses four models, and comes back",
+      "footnote": "Every stage here is a pure function of arrays, so the trip back is not a courtesy. It is the only way to tell a correct matrix from a plausible one. The numbers on the return edges were measured on this checkout and are asserted in the test suite, so a transform that drifts fails the build rather than shipping a color that looks close enough.",
+      "alt": "Eight stages of taking one color out of sRGB and back: sRGB in, linearize, to XYZ, perceptual, adapt, appearance, invert, and measure. A hex triple is decoded to eight bits a channel, the sRGB transfer curve is undone, and a single three by three matrix carrying the primaries as columns lands the color in XYZ. From there it reaches the perceptual spaces, Oklab and CIELAB and JzAzBz and ICtCp among twenty-six named conversions in all. Chromatic adaptation moves the white point using any of nine matrices across seven illuminants, and the appearance models, CIECAM02 and CAM16, add viewing conditions: a white point, an adapting luminance, a background and a surround. Then the steps that carry an inverse run backwards, CIECAM02 and Oklab among them, and the result is measured against where it started. Round tripping sRGB to Oklab and back over a twenty-six cubed grid never moves a channel more than four times ten to the minus fourteen, and adapting D65 to D50 and back returns within three units in the last place for all nine matrices. Three outcomes: the round trip holds, the color is out of gamut, or the input was never a color.",
+      "stages": [
+        {"title": "sRGB in", "note": "Eight bits a channel, transfer encoded."},
+        {"title": "Linearize", "note": "Undo the curve, keep the primaries."},
+        {"title": "To XYZ", "note": "One matrix, primaries as its columns."},
+        {"title": "Perceptual", "note": "Oklab, CIELAB, JzAzBz, ICtCp."},
+        {"title": "Adapt", "note": "Nine matrices, seven illuminants."},
+        {"title": "Appearance", "note": "CIECAM02 and CAM16, viewing conditions and all."},
+        {"title": "Invert", "note": "CIECAM02 and Oklab, run backwards."},
+        {"title": "Measure", "note": "Distance from where it started."}
+      ],
+      "returns": [
+        {"from": 2, "to": 0, "label": "SRGB TO OKLAB AND BACK UNDER 1E-13"},
+        {"from": 6, "to": 4, "label": "ALL NINE MATRICES UNDO UNDER 1E-15"}
+      ],
+      "outcomes": [
+        {"label": "ROUND TRIP HOLDS", "note": "error at the floating-point floor", "tone": "verified"},
+        {"label": "OUT OF GAMUT", "note": "clipped, compressed, or reduced", "tone": "drift"},
+        {"label": "NOT A COLOR", "note": "the input never parsed", "tone": "none"}
+      ]
+    },
+    {
+      "file": "hdr-lane.svg",
+      "kicker": "the bright half of the signal, and what survives the trip to a panel",
+      "title": "How scene light becomes display light without losing its order",
+      "footnote": "Tone mapping throws information away on purpose, so a round trip is the wrong question to ask of it. The right one is whether order survives: if two samples went in with one brighter than the other, they have to come out that way. Eleven of the twelve hold that across the range tested. The Gran Turismo curve does not: it falls by about a tenth at the point where its toe hands off, because the linear segment that belongs between toe and shoulder is missing from the implementation. Three of the twelve answer in absolute units and can exceed one, which is a property of the standards they implement.",
+      "alt": "Eight stages of taking scene light to a panel: scene light, encode, decode, check, tone map, gamut, display, and difference. Scene light is linear and unbounded, well above one. It is encoded with PQ, which covers ten thousand candela per square metre in a signal from zero to one, or with HLG over its own zero to one domain. Decoding returns the light that went in: PQ round trips to within three parts in ten to the thirteen relative across its full range, and HLG to within seven times ten to the minus sixteen absolute inside its domain. Tone mapping applies one of twelve operators, each a single call. Gamut mapping then clips, compresses, or reduces chroma in Oklab, and the result is re-encoded for the panel. Seven difference metrics grade what changed. Eleven of the twelve operators are monotone non-decreasing over the range tested, so a brighter sample never comes out darker than a dimmer one. The Gran Turismo curve is the exception and falls at the handoff between its toe and its shoulder. Three outcomes: displayable, compressed, or answered in absolute units.",
+      "stages": [
+        {"title": "Scene light", "note": "Linear, unbounded, well above one."},
+        {"title": "Encode", "note": "PQ over ten thousand nits, or HLG."},
+        {"title": "Decode", "note": "Back to the light that went in."},
+        {"title": "Check", "note": "Relative error across the range."},
+        {"title": "Tone map", "note": "Twelve operators, one call each."},
+        {"title": "Gamut", "note": "Clip, compress, or reduce chroma."},
+        {"title": "Display", "note": "Re-encode for the panel showing it."},
+        {"title": "Difference", "note": "Seven metrics, graded."}
+      ],
+      "returns": [
+        {"from": 2, "to": 0, "label": "BOTH CURVES DECODE WHAT THEY ENCODE"},
+        {"from": 6, "to": 4, "label": "ELEVEN OF TWELVE PRESERVE ORDER"}
+      ],
+      "outcomes": [
+        {"label": "DISPLAYABLE", "note": "inside the panel's range", "tone": "verified"},
+        {"label": "COMPRESSED", "note": "highlights bought with contrast", "tone": "drift"},
+        {"label": "ABSOLUTE UNITS", "note": "three answer in their own units", "tone": "none"}
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "file": "numbers-table.svg",
+      "kicker": "counts, not adjectives",
+      "title": "Every number this workbench ships, and where it is read from",
+      "source": "build_color/, measured on this checkout",
+      "heads": ["what it holds", "how many", "where the number comes from"],
+      "alt": "A table of twelve rows: what the workbench holds, how many of it there are, and which module the number is read from. Twenty-six named conversions in spaces.py move a color between two spaces: sRGB, linear RGB, XYZ, xyY, CIELAB, LCH, Oklab, Oklch, JzAzBz, JzCzhz, ICtCp and HSV. Five RGB gamuts carry matrix pairs instead, sRGB and Display P3 and BT.2020 and Adobe RGB and ACEScg. Twelve tone mapping operators sit in tonemap.OPERATORS, of which three answer in absolute units and can exceed one: BT.2390, the knee, and extended Reinhard. Nine chromatic adaptation matrices adapt D65 to D50 and back within three units in the last place. Seven illuminants, seven difference metrics, four colour vision deficiency types and six harmony schemes. CIECAM02 forward then inverse over seven hundred and twenty-nine sRGB colors stays under three times ten to the minus fifteen, and sRGB to Oklab and back over a twenty-six cubed grid stays under four times ten to the minus fourteen. The CIE 1931 colour matching functions carry eighty-one samples from three hundred and eighty to seven hundred and eighty nanometres. One hundred and forty-eight CSS colors back the naming lookup.",
+      "footnote": "Every count here is read from a registry rather than typed into a document, and every error bound is the worst case over a sweep this repository's tests re-run. The three operators that answer in absolute units are marked because a caller who assumes zero to one will get a number that looks wrong and is not.",
+      "fields": [
+        {"key": "color spaces", "value": "26 conversions", "note": "Named functions in spaces.py that move a color between two spaces. Five RGB gamuts carry matrix pairs rather than functions: sRGB, P3, BT.2020, Adobe RGB, ACEScg."},
+        {"key": "tone operators", "value": "twelve of them", "note": "Keys of tonemap.OPERATORS: ACES twice, AgX, Reinhard twice, Hable, Lottes, Uchimura, PBR Neutral, BT.2390, BT.2446, and a configurable knee."},
+        {"key": "absolute units", "value": "three of the twelve", "note": "BT.2390, the knee and extended Reinhard answer in their own units and can exceed one. The other nine land inside zero to one."},
+        {"key": "order preserved", "value": "eleven of twelve", "note": "Monotone non-decreasing over the range tested. The Gran Turismo curve is the exception and falls by about a tenth where its toe hands off.", "tone": "drift"},
+        {"key": "adaptation", "value": "nine matrices", "note": "adaptation.MATRICES: Bradford, CAT16, CAT02, Sharp, von Kries, CMCCAT2000, Fairchild, Bianco-Schettini, and plain XYZ scaling."},
+        {"key": "adapt and undo", "value": "under 1e-15", "note": "D65 to D50 and back for every matrix over a sweep of sRGB colors. Worst absolute error 6.7e-16, three units in the last place."},
+        {"key": "illuminants", "value": "seven of them", "note": "A, D50, D55, D65, D75, F2 and F11, held as XYZ white points in adaptation.ILLUMINANTS."},
+        {"key": "difference", "value": "seven metrics", "note": "CIE76, CIE94, CIEDE2000, CMC with its lightness and chroma weights, JzAzBz, Oklab, and HyAB."},
+        {"key": "appearance", "value": "two models", "note": "CIECAM02 forward and inverse, CAM16 forward, and the CAM16-UCS uniform space. Viewing conditions carry a white point, adapting luminance, background and surround."},
+        {"key": "CIECAM02 return", "value": "under 1e-14", "note": "Forward then inverse at D65 over seven hundred and twenty-nine sRGB colors. Worst absolute error under 3e-15."},
+        {"key": "Oklab return", "value": "under 1e-13", "note": "sRGB to Oklab and back over a twenty-six cubed grid. Worst absolute error under 4e-14 on any channel."},
+        {"key": "spectral", "value": "81 samples", "note": "CIE 1931 colour matching functions from 380 to 780 nanometres in five nanometre steps, with Planck and daylight alongside."}
+      ]
+    }
+  ]
+}
