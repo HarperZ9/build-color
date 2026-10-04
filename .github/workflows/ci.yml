@@ -59,3 +59,9 @@ jobs:
           pip install -e ".[all,dev]"
       - name: Run tests with coverage
         run: pytest tests/ -q --cov=build_color --cov-report=term-missing --cov-fail-under=45
+  art-receipts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Verify art receipt digests
+        run: python3 scripts/check_art_receipts.py
