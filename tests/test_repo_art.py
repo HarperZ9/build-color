@@ -71,11 +71,17 @@ def named_conversions():
 
 def test_every_drawing_is_committed_and_shown_in_the_readme():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    front = readme
+    # The previous header left the README on 4 October 2026 and is recorded in the brand notes;
+    # a page here is the README or a doc under docs/, the same set tools/check_repo_art.py uses.
+    readme += "".join(q.read_text(encoding="utf-8") for q in sorted((ROOT / "docs").rglob("*.md")))
     for name in DRAWINGS:
         path = ROOT / "docs/art" / name
         assert path.is_file(), f"{name} is drawn but not committed"
         assert path.stat().st_size > 0
         assert f"docs/art/{name}" in readme, f"{name} is committed but never shown"
+    for hero in ("docs/art/hero-dark.svg", "docs/art/hero-light.svg"):
+        assert (ROOT / hero).is_file() and hero in front, hero
 
 
 def test_the_card_counts_the_conversions_that_actually_convert():

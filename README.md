@@ -1,18 +1,22 @@
-![Build Color, a Python color-science workbench: convert, adapt, appear, map, measure.](docs/art/build-color-header.svg)
-<!-- Project mark: docs/brand/build-color-mark.svg -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/HarperZ9/build-color/main/docs/art/hero-dark.svg">
+  <img src="https://raw.githubusercontent.com/HarperZ9/build-color/main/docs/art/hero-light.svg" alt="build-color: Python color-science workbench: convert, adapt, appear, map, measure. Parallel rays pass through a lens drawn in fine lines, gather at a bright core and spread out past it." width="100%">
+</picture>
 
-# Build Color
+# build-color
 
-> Python color-science workbench for perceptual spaces, HDR tone mapping, color appearance models, Delta E metrics, chromatic adaptation, spectral utilities, and ICC profile generation.
+Python color-science workbench: convert, adapt, appear, map, measure.
+
+```
+pip install ".[all]"
+```
+
+[![version: 1.0.1](https://img.shields.io/badge/version-1.0.1-e6e1d6?style=flat-square&labelColor=1a1712)](https://github.com/HarperZ9/build-color/releases/latest)
+[![CI](https://github.com/HarperZ9/build-color/actions/workflows/ci.yml/badge.svg)](https://github.com/HarperZ9/build-color/actions/workflows/ci.yml)
+[![license](https://img.shields.io/badge/license-FSL--1.1--MIT-e6e1d6?style=flat-square&labelColor=1a1712)](https://github.com/HarperZ9/build-color/blob/main/LICENSE)
+![python 3.10+](https://img.shields.io/badge/python-3.10%2B-e6e1d6?style=flat-square&labelColor=1a1712)
 
 [Project Telos](https://harperz9.github.io) | [gather](https://github.com/HarperZ9/gather) | [crucible](https://github.com/HarperZ9/crucible) | [index](https://github.com/HarperZ9/index) | [forum](https://github.com/HarperZ9/forum) | [telos](https://github.com/HarperZ9/telos) | [emet](https://github.com/HarperZ9/emet) | [buildlang](https://github.com/HarperZ9/buildlang)
-
-[![CI](https://github.com/HarperZ9/build-color/actions/workflows/ci.yml/badge.svg)](https://github.com/HarperZ9/build-color/actions/workflows/ci.yml)
-![version: 1.0.2](https://img.shields.io/badge/version-1.0.2-informational.svg)
-![python: 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)
-![core dep: numpy](https://img.shields.io/badge/core%20dep-numpy-success.svg)
-[![license: fair-source](https://img.shields.io/badge/license-fair--source-blue.svg)](LICENSE)
-[![part of: Project Telos](https://img.shields.io/badge/part_of-Project_Telos-4636e8.svg)](https://harperz9.github.io)
 
 Build Color is a Python color-science workbench for people who need more than
 hex conversion. It covers perceptual spaces, HDR tone mapping, color appearance
