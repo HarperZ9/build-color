@@ -46,8 +46,8 @@ from build_color.spaces import srgb_to_oklab
 from build_color.tonemap import aces_filmic
 from build_color.appearance import ciecam02_forward, ViewingConditions
 
-srgb_to_oklab(np.array([0.8, 0.2, 0.1]))        # [0.557, 0.164, 0.102]
-aces_filmic(np.array([0.18, 1.0, 4.0]))         # [0.267, 0.804, 0.973]
+srgb_to_oklab(np.array([0.8, 0.2, 0.1]))  # [0.557, 0.164, 0.102]
+aces_filmic(np.array([0.18, 1.0, 4.0]))  # [0.267, 0.804, 0.973]
 
 # CIECAM02 takes XYZ and the white on a 0 to 100 scale.
 vc = ViewingConditions(white_point=np.array([95.05, 100.0, 108.88]), L_A=318.31, Y_b=20.0)
