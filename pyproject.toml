@@ -7,7 +7,8 @@ name = "build-color"
 version = "1.0.2"
 description = "Python color-science workbench for HDR tone mapping, appearance models, Delta E, spectral, ICC, and LUT workflows"
 readme = "README.md"
-license = { text = "FSL-1.1-MIT" }
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [
     { name = "Zain Dana Harper" },
 ]
